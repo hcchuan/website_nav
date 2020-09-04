@@ -1,0 +1,66 @@
+<!--
+<div class="footer">
+        <p><a href="{:config('web.WEB_COM')}">Copyright© 2019</a>  <a target="_blank" href="http://www.guojiz.com/">Powered by Guojiz V2.2</a></p>
+    </div>
+-->
+            </section>
+            <footer class="aui-footer">
+                <a href="/" class="aui-tabBar-item">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-home"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">首页</span>
+                </a>
+                <a href="/list.html" class="aui-tabBar-item ">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-loan"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">分类</span>
+                </a>
+                <a href="/news.html" class="aui-tabBar-item">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-comm"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">文章</span>
+                </a>
+                <a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/top.html?type=today{else/}__INDEX__/top.html?type=today{/if}" class="aui-tabBar-item ">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-credit"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">排行</span>
+                </a>
+              
+          {if condition="$keyss eq 1"} 
+                <a href="/wang.html" class="aui-tabBar-item ">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-me"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">更新</span>
+                </a>
+              {elseif condition="$keyss eq 2"}
+                <a href="/wang.html"class="aui-tabBar-item ">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-me"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">更新</span>
+                </a>
+          {else /}
+                <a href="javascript:;" id="toast2" class="aui-tabBar-item ">
+                    <span class="aui-tabBar-item-icon">
+                        <i class="icon icon-me"></i>
+                    </span>
+                    <span class="aui-tabBar-item-text">更新</span>
+                </a>
+                      <script>
+                        document.getElementById('toast2').onclick = function () {
+                          alert({
+                             title: '未授权',
+                            content: '请联系站长',
+                            doneText: '确实'
+                          }).then(callback)
+                        }
+                  </script>
+          {/if} 
+
+            </footer>
+        </section>

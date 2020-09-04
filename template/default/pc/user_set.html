@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			基本设置 - {:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+		{include file="index/header"}
+		<style type="text/css">
+			.wang { border: 1px solid #fff; background: #f1f1f1; } .wang{border:1px
+			solid #ececec;background:#FFF;display:block;width:83px;text-align:center;color:#333;font-size:14px;border-radius:19px;max-width:100%;overflow:hidden;margin:0px
+			auto;transition:0.2s all} .content { background: #fafafa; margin-bottom:
+			10px; } .content > .right { background: #eeeeee; border: 20px solid #fafafa;
+			} .content > .right { padding-top: 0px; } 
+          .content > .left li .hover {background: #6ba7f0; border-left: 6px solid #f79306!important;}
+          .tuichu { display: inline-block; height: 20px; line-height: 20px; padding:
+			0 18px; background-color: #f5043e; color: #fff; white-space: nowrap; text-align:
+			center; font-size: 14px; border: none; border-radius: 2px; cursor: pointer;
+			opacity: .9; filter: alpha(opacity=90); }
+		</style>
+		<link rel="stylesheet" href="__PC__/css/global.css">
+		<article>
+			<div class="content layui-clear">
+				<ul class="left">
+					<div align="center">
+						<img id="headedit" src="{$member.userhead}" height="80" width="80">
+						<li style="margin-top:10px;color: #0b5ab9;font-weight: bold;font-size: 18px;">
+							{$Think.session.username}
+						</li>
+						<li>
+							<button class="tuichu">
+								退出
+							</button>
+						</li>
+						<script>
+							layui.use('form', function() {
+
+    var form = layui.form()
+
+    , jq = layui.jquery;
+
+    jq('.tuichu').click(function() {
+
+        var id = jq(this).data('id');
+
+        var url = "{:url('login/logout')}";
+
+        layer.confirm('确定要退出吗？', function(index) {
+
+            loading = layer.load(20, {
+
+                shade: [0.2, '#000']
+
+            });
+
+            jq.post(url, {
+                id: id
+            }, function(data) {
+
+                location.reload();
+
+                layer.msg(data.msg, {
+                    icon: 1,
+                    time: 1000
+                }, function() {
+
+                });
+
+                layer.close(loading);
+
+            });
+
+        });
+
+    });
+
+});
+						</script>
+						<li>
+							{:config('point.GJJF-MING')}:{$member.point}
+						</li>
+					</div>
+					<li>
+						<a href="/user/set.html"class="hover">
+							<img src="__PC__/img/1215615.gif">
+							基本设置
+						</a>
+					</li>
+					<li>
+						<a href="/user/comment.html">
+							<img src="__PC__/img/1215606.gif">
+							我的操作
+						</a>
+					</li>
+
+					<li>
+						<a href="/kuai.html">
+							<img src="__PC__/img/1215610.gif">
+							快审提交
+						</a>
+					</li>
+					<li>
+						<a href="/user/cz.html">
+							<img src="__PC__/img/1215650.gif">
+							积分充值
+						</a>
+					</li>
+				</ul>
+				<div class="right">
+					<div style="padding: 10px;">
+						<div class="layui-tab layui-tab-brief" lay-filter="user">
+							<ul class="layui-tab-title" id="LAY_mine">
+								<li class="layui-this" lay-id="info">
+									我的资料
+								</li>
+								<li lay-id="avatar">
+									头像
+								</li>
+								<li lay-id="pass">
+									密码
+								</li>
+							</ul>
+							<div class="layui-tab-content"style="padding: 20px;background: #ffffff;margin-top:20px;">
+								<div class="layui-form layui-form-pane layui-tab-item layui-show">
+									<form method="post">
+										<input type="hidden" name="userid" value="{$tptc.userid}">
+										<div class="layui-form-item">
+											<label for="L_email" class="layui-form-label">
+												邮箱
+											</label>
+											<div class="layui-input-inline">
+												<input type="text" name="usermail" required lay-verify="required" autocomplete="off"
+												value="{$tptc.usermail}" class="layui-input" disabled>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label for="L_username" class="layui-form-label">
+												昵称
+											</label>
+											<div class="layui-input-inline">
+												<input type="text" name="username" required lay-verify="required|names"
+												autocomplete="off" value="{$tptc.username}" class="layui-input" disabled>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label for="L_username" class="layui-form-label">
+												性别
+											</label>
+											<div class="layui-input-inline">
+												<input type="radio" name="sex" value="1" title="男" {if condition="$tptc['sex'] eq 1"
+												}checked{/if}>
+												<input type="radio" name="sex" value="0" title="女" {if condition="$tptc['sex'] eq 0"
+												}checked{/if}>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label for="L_city" class="layui-form-label">
+												城市
+											</label>
+											<div class="layui-input-inline">
+												<input type="text" name="userhome" lay-verify="homes" autocomplete="off"
+												value="{$tptc.userhome}" class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item layui-form-text">
+											<label for="L_sign" class="layui-form-label">
+												签名
+											</label>
+											<div class="layui-input-block">
+												<textarea placeholder="随便写些什么刷下存在感" name="description" lay-verify="descrs"autocomplete="off" class="layui-textarea" style="height: 80px;">{$tptc.description}</textarea>
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<button class="layui-btn" lay-submit="" lay-filter="user_set">
+												确认修改
+											</button>
+										</div>
+									</form>
+								</div>
+								<div class="layui-form layui-form-pane layui-tab-item">
+									<form method="post">
+										<div class="layui-form-item">
+											<div class="avatar-add">
+												<p>
+													建议尺寸168*168，支持jpg、png、gif，最大不能超过50KB
+												</p>
+												<div class="upload-img">
+													<input type="hidden" name="userid" value="{$tptc.userid}">
+													<input type="file" name="file" class="layui-upload-file" id="image">
+													<input type="hidden" name="userhead" value="{$tptc.userhead}" class="layui-input">
+												</div>
+												<img id="headedit" src="__ROOT__{$tptc.userhead}">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<button class="layui-btn" lay-submit="" lay-filter="user_headedit">
+												确认修改
+											</button>
+										</div>
+									</form>
+								</div>
+								<div class="layui-form layui-form-pane layui-tab-item">
+									<form method="post">
+										<input type="hidden" name="userid" value="{$tptc.userid}">
+										<div class="layui-form-item">
+											<label class="layui-form-label">
+												修改密码
+											</label>
+											<div class="layui-input-inline">
+												<input type="password" name="password" required lay-verify="required|pass"
+												autocomplete="off" class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<label class="layui-form-label">
+												确认密码
+											</label>
+											<div class="layui-input-inline">
+												<input type="password" name="passwords" required lay-verify="required|pass"
+												autocomplete="off" class="layui-input">
+											</div>
+										</div>
+										<div class="layui-form-item">
+											<button class="layui-btn" lay-submit="" lay-filter="user_setedit">
+												确认修改
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</article>
+		{include file="index/footer"}
+<script>
+layui.use(['form', 'upload', 'element'],function(){
+  var form = layui.form()
+  ,element = layui.element()
+  ,jq = layui.jquery;
+
+  layui.upload({
+    url: '{:url("index/upload/upimage")}'
+    ,elem:'#image'
+	,ext: 'jpg|png|gif'
+	,area: ['100px', '100px']
+    ,before: function(input){
+      loading = layer.load(2, {
+        shade: [0.2,'#000'] 
+      });
+    }
+    ,success: function(res){
+      layer.close(loading);
+      jq('input[name=userhead]').val(res.path);
+	  headedit.src = "__ROOT__"+res.path;
+      layer.msg(res.msg, {icon: 1, time: 1000});
+    }
+  }); 
+
+  form.verify({
+    names: function(value){
+      if(value.length > 12){
+        return '昵称必须小于12位';
+      }
+    }
+	,homes: function(value){
+      if(value.length > 6){
+        return '城市必须小于6位';
+      }
+    }
+	,descrs: function(value){
+      if(value.length > 16){
+        return '签名必须小于16位';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+
+  form.on('submit(user_set)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("index/user/set")}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.href = '{:url("index/user/set")}';
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+
+  form.on('submit(user_setedit)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("index/user/setedit")}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.href = '{:url("index/user/set")}';
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+
+  form.on('submit(user_headedit)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("index/user/headedit")}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.href = '{:url("index/user/set")}';
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+  
+});
+</script>
+		</body>
+
+</html>

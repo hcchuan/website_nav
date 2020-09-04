@@ -1,0 +1,34 @@
+body{background:#eee}
+footer{background: -webkit-linear-gradient(45deg, #df01e1 0%, #420de0 100%);}
+.content > .left{border-right:1px solid #F6F6F6;padding-top:50px;width:180px;overflow:hidden}
+.content > .left li{margin-bottom:15px}
+.content > .left li a{height:55px;line-height:55px;display:block;font-size:15px;padding-left:30px;padding-right:10px;overflow:hidden;cursor:pointer;color:#333;transition:0.2s all}
+.content > .left li a:hover{color:#20c4ab}
+.content > .left li a img{height:18px;width:18px;vertical-align:middle;margin-top:-3px;margin-right:12px}
+.content > .left li .hover{background:#20c4ab;color:#FFF}
+.content > .left li .hover:hover{color:#FFF}
+.content > .right{width:calc(100% - 180px - 20px);padding-top:50px}
+.content > .right .ulttile{padding:0px 10px}
+.content > .right .ulttile div{float:left;font-size:15px;height:55px;line-height:55px;color:#333;padding-left:20px}
+.content > .right .ulttile div:nth-child(1){width:15%}
+.content > .right .ulttile div:nth-child(2){width:40%}
+.content > .right .ulttile div:nth-child(3){width:17.5%}
+.content > .right .ulttile div:nth-child(4){width:17.5%}
+.content > .right .ulttile div:nth-child(5){width:10%;padding-left:0;text-align:center}
+.content > .right .updatelist{position:relative;margin-top:20px;min-height:600px}
+.content > .right .updatelist li{padding:15px 10px}
+.content > .right .updatelist li:hover{background:#fbfbfb}
+.content > .right .updatelist li div{float:left;font-size:15px;height:35px;line-height:33px;color:#333;padding-left:20px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.content > .right .updatelist li div:nth-child(1){width:15%}
+.content > .right .updatelist li div:nth-child(2){width:40%}
+.content > .right .updatelist li div:nth-child(2) .url{color:#333!important}
+.content > .right .updatelist li div:nth-child(3){width:17.5%}
+.content > .right .updatelist li div:nth-child(4){width:17.5%}
+.content > .right .updatelist li div:nth-child(5){width:10%;padding-left:0}
+.content > .right .updatelist li div:nth-child(5) .open{border:1px solid #ececec;background:#FFF;display:block;width:83px;text-align:center;color:#333;font-size:14px;border-radius:19px;max-width:100%;overflow:hidden;margin:0px auto;transition:0.2s all}
+.content > .right .updatelist li div:nth-child(5) .open:hover{color:#333}
+.content > .right .updatelist li .new-time{color:#333333}
+#page{text-align:center;margin-top:20px;margin-bottom:15px}
+.layui-laypage a,.layui-laypage span{padding:0 22px;height:36px;line-height:36px;font-size:14px}
+.layui-laypage a,.layui-laypage button,.layui-laypage input,.layui-laypage select,.layui-laypage span{border:1px solid #F6F6F6}
+.layui-laypage .layui-laypage-curr .layui-laypage-em{background-color:#20c4ab}

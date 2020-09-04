@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{$t.title} - {:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{$t.keywords}">
+		<meta name="description" content="{$t.description}">
+		{include file="index/header"}
+		<link rel="stylesheet" href="__PC__/css/de.css?2019">
+		<article>
+			<div>
+				<div class="you info layui-clear">
+					<div class="left">
+						<div align="center">
+							<img src="{if condition="$t['pic'] neq ''"}{$t.pic}{else/}/public/img/cover.png{/if}" width="180" height="160">
+						</div>
+                      {if condition="$panduan eq 200"}
+                      <a href="http://{$t.lianjie}/{:config('web.WEB_HZ')}" class="href topdj" data-id="{$t.id}"  target="_blank">
+							直接访问
+						</a>
+                      {else/}
+                     <a href="#" class="href topdj" data-id="{$t.id}">
+							网站链接失效
+						</a>
+                      {/if}
+					</div>
+                  <script>
+		
+                    layui.use(['form', 'upload'],function() {
+		
+                      var form = layui.form,
+		
+                          jq = layui.jquery;
+		
+                      jq(".topdj").bind("topdj").click(function() {
+			
+                        var url = "{:url("index/index/topdj")}";
+			
+                        var id = jq(this).data('id');
+			
+                        jq.post(url, {
+				
+                          id: id
+				
+                        },function(data) {});
+		
+                      });
+		
+                    })
+	
+                  </script>
+					<div class="right">
+                      <h3 class="web-title">
+ 
+                        {if condition="$Think.session.username neq ''"}
+                        {if condition="$member['userid'] eq 1"}
+    
+                        <a href="javascript:;"  class="layui-btn cjsq" style=" height: 20px; line-height: 20px;  background-color: #9307e1;margin-left:10px;">更新</a>
+                       <a  href="{:url('admin.php/html/edit',array('id'=>$t['id']))}">  <button class="layui-btn layui-btn-mini layui-btn-warm">修改</button></a> 
+                        <button type="button" member-id="{$t.id}" nickname="{$t.title}" class="layui-btn layui-btn-mini layui-btn-danger jie-admin-delete">删除</button>
+                               <script>
+   
+                                  layui.use('form', function() {
+ 
+                                    var form = layui.form()
+
+                                    ,jq = layui.jquery;
+ 
+                                    jq('.cjsq').click(function(){
+
+                                      var id = jq(this).data('id');
+
+                                      var url = "{:url('html/yjgx',array('id'=>$t['id']))}";
+
+                                      layer.confirm('确定更新网址数据?', function(index){
+	      
+                                        loading = layer.load(20, {
+	       
+                                          shade: [0.2,'#000']
+	     
+                                        });
+         
+                                        jq.post(url, {id: id},function(data){	 
+      
+                                          location.reload();
+    
+                                          layer.msg(data.msg, {icon: 1, time: 1000}, function(){ 
+    
+                                          });
+  
+                                          layer.close(loading);
+    
+                                        });
+   
+                                      });
+	
+                                    });
+  
+                                    jq('.jie-admin-delete').click(function(){
+  
+                                      var name = jq(this).attr('nickname');
+   
+                                      var id = jq(this).attr('member-id');
+   
+                                      layer.confirm('确定删除【'+name+'】?', function(index){
+     
+                                        loading = layer.load(2, {
+       
+                                          shade: [0.2,'#000']
+    
+                                        });
+     
+                                        jq.post('{:url("admin.php/html/dels")}',{'id':id},function(data){
+      
+                                          if(data.code == 200){
+        
+                                            layer.close(loading);
+        
+                                            layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+         
+                                              location.href = "{:url('index/index/index')}";
+         
+                                            });
+    
+                                          }else{
+        
+                                            layer.close(loading);
+          
+                                            layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+       
+                                          }
+     
+                                        });
+   
+                                      });   
+ 
+                                    });
+   
+                                  });
+
+                                </script>
+                        {/if}{else /} {/if}
+							<em><img src="{if condition="$t['ico'] neq ''"}{$t.ico}{else/}/favicon.ico{/if}" height="24">{$t.title}</em>
+                        </h3>
+						<ul class="layui-clear">
+							<li>
+								<span>
+									所属分类：
+								</span>
+								{if condition="config('web.WEB_URL') eq 1"}
+								<a href="__ROOT__/view/{$t.cid}.html">
+									{else/}
+									<a href="__INDEX__/view/{$t.cid}.html">
+										{/if}{$t.name}
+									</a>
+							</li>
+							<li>
+								<span>
+									网址链接：
+								</span>
+                              {if condition="$panduan eq 200"}
+								<a href="http://{$t.lianjie}/{:config('web.WEB_HZ')}" target="_blank">
+									{$t.lianjie}
+								</a>
+                              {else/}
+                              <a href="#">
+									网址失效了
+                                {if condition="$Think.session.username neq ''"}
+                                
+                                <button type="button" member-id="{$t.id}" nickname="{$t.title}" class="layui-btn layui-btn-mini layui-btn-danger jie-admin-delete">删除</button>
+
+                                <script>
+   
+                                  layui.use('form', function() {
+ 
+                                    var form = layui.form()
+
+                                    ,jq = layui.jquery;
+
+  
+                                    jq('.jie-admin-delete').click(function(){
+  
+                                      var name = jq(this).attr('nickname');
+   
+                                      var id = jq(this).attr('member-id');
+   
+                                      layer.confirm('确定删除【'+name+'】?', function(index){
+     
+                                        loading = layer.load(2, {
+       
+                                          shade: [0.2,'#000']
+    
+                                        });
+     
+                                        jq.post('{:url("admin.php/html/dels")}',{'id':id},function(data){
+      
+                                          if(data.code == 200){
+        
+                                            layer.close(loading);
+        
+                                            layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+         
+                                              location.href = "{:url('index/index/index')}";
+         
+                                            });
+    
+                                          }else{
+        
+                                            layer.close(loading);
+          
+                                            layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+       
+                                          }
+     
+                                        });
+   
+                                      });   
+ 
+                                    });
+   
+                                  });
+
+                                </script>
+                                
+                                {else /}
+
+                                {/if}
+								</a>
+                              {/if}
+							</li>
+							<li>
+								<span>
+									收录时间：
+								</span>
+								<a>
+									{$t.time|date="Y-m-d h:i:s",###}
+								</a>
+							</li>
+							<li>
+								<span>
+									累计点击：
+								</span>
+								<a>
+									{$t.view}人次 
+								</a>
+							</li>
+							<li>
+								<span>
+									站长QQ：
+								</span>
+								<a href="http://wpa.qq.com/msgrd?v=3&uin={$t.qq}&site=qq&menu=yes" target="_blank">
+									{$t.qq}
+								</a>
+							</li>
+							<li>
+								<span>
+									百度权重：
+								</span>
+								<a href="https://www.aizhan.com/cha/{$t.lianjie}" target="_blank">
+									<img src="https://baidurank.aizhan.com/api/br?domain={$t.lianjie}&amp;style=images"
+									class="pr">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+              
+ 
+              
+				<div class="other you">
+					<div class="title">
+						<h3>
+							网站介绍
+						</h3>
+					</div>
+					<div class="introduce">
+						<p>
+                          
+							{$content}
+						</p>
+						<p>
+							<br>
+						</p>
+					</div>
+				</div>
+              
+				<div class="other you">
+					<div class="title">
+						<h3>
+							人气走势
+						</h3>
+					</div>
+					<div class="introduce">
+						<p>
+                          
+                      <div id="pillar2" style="width:100%;height:305px;">
+       
+                      </div> 
+						</p>
+						<p>
+							<br>
+						</p>
+					</div>
+				</div>
+				<div class="other you" style="margin-bottom:15px;">
+					<div class="title">
+						<h3>
+							猜你喜欢
+						</h3>
+					</div>
+					<div class="introduce">
+						<div class="lists">
+							<ul class="layui-clear">
+								{volist name="artchoice" id="vo"}
+								<li>
+									<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}">
+										<div class="img">
+											<img src="{if condition="$vo['pic'] neq ''"}{$vo.pic}{else/}/public/img/cover.png{/if}" height="80">
+										</div>
+										<div align="center">
+											<p class="introduce">
+												{$vo.title}
+											</p>
+										</div>
+									</a>
+								</li>
+								{/volist}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			{include file="index/footer"}
+			</body>
+
+</html>
+<script type="text/javascript" src="__PC__/js/echarts.min.js"></script>
+<script>
+var pillar2 = echarts.init(document.getElementById('pillar2'));
+pillar2.setOption({
+    color:["#00afff"],
+    tooltip : {
+        trigger: 'axis'
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['{$time8|date="Y-m-d",###}','{$time7|date="Y-m-d",###}','{$time6|date="Y-m-d",###}','{$time5|date="Y-m-d",###}','{$time4|date="Y-m-d",###}','{$time3|date="Y-m-d",###}',
+            '{$time2|date="Y-m-d",###}','{$time1|date="Y-m-d",###}','今日点击']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'累计点击人次',
+            type:'bar',
+            data:[{$today_update8}, {$today_update7}, {$today_update6}, {$today_update5}, {$today_update4}, {$today_update3}, {$today_update2}, {$today_update1}, {$today_update}]
+        }
+    ]
+});
+  </script>

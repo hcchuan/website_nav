@@ -1,0 +1,27 @@
+ <html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{$t.title} - {:config('web.WEB_TIT')} - 手机版</title>
+  		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        {include file="index/header"}
+    </head>
+    <body huaban_collector_injected="true">
+<header class="hui-header">
+        <a>
+            <div id="hui-back" onclick="javascript:history.back(-1)"></div>
+        </a>
+        <h1>{$t.title}</h1>
+        <a href="/"><div id="hui-header-menu"></div></a>
+    </header>
+<div style="margin-top:50px;" class="aui-grids-box">
+                <div class="intro">
+                	<p style="font-size: 0.9rem;">
+						 {$content} 	</p>
+                </div>
+</div>
+                  
+</body>
+              

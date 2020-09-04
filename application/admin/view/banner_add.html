@@ -1,0 +1,129 @@
+<!--
+ *  Guojiz网址导航系统
+ *	www.guojiz.com
+ *  作者：梦雨
+ *  @ QQ50361804
+-->
+{include file="index/header"}
+<body>
+<div class="fly-panel fly-panel-user">
+<div class="tpt—admin">
+<fieldset class="layui-elem-field layui-field-title">
+<legend>添加广告</legend>
+</fieldset>
+  <div class="layui-form-item">
+    <label class="layui-form-label">模型</label>
+    <div class="layui-input-block">
+		   <select id="xuan" style="height: 38px; line-height: 38px;" onchange="show_input();">
+
+             <option value=''>--请选择--</option>
+
+             <option value='<a href="http://www.guojiz.com/" target="_blank" style="display: block; position: relative; /*height: 60px;*/ line-height: 60px;margin-top: 10px; text-align: center; font-size: 16px;font-weight: 300;"> 
+<img src="http://hao.guojiz.com/uploads/20190711/faabc80a92928bbd8bccc6656087f2f7.jpg" style="height: 100%;width:100%">
+</a>'>图片广告</option>
+             <option value='<a href="https://www.guojiz.com/thread/1.html"target="_blank" style="display: block;  position: relative; height: 60px;  line-height: 60px; margin-top: 10px; padding: 0 20px; text-align: center; font-size: 16px;font-weight: 300;color: #fff;background-color: #0063FF;">
+Guojiz网址导航系统免费下载
+</a>'>文字广告</option>
+      </select>
+    </div>
+  </div>
+<form class="layui-form"> 
+  <div class="layui-form-item">
+    <label class="layui-form-label">位置</label>
+    <div class="layui-input-block">
+		<input type="number" style="width: 100px;text-align:center" name="fl" value="1"min="1" autocomplete="off" class="layui-input">
+
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">备注</label>
+    <div class="layui-input-block">
+		<input type="text" style="width: 400px;" name="links" placeholder="填写备注信息备注" value="" class="layui-input">
+
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">代码</label>
+    <div class="layui-input-block">
+      <textarea name="title" id="ze" placeholder="请输入html代码" class="layui-textarea"> </textarea>
+    </div>
+  </div>
+ 
+<div class="layui-form-item">
+  <div class="layui-input-block">
+  <div style="background-color: #ddffff!important;padding: 14px;border-left: 6px solid #ccc!important;border-color: #2196F3!important;">
+<p>
+下面上传图片添加到代码配置
+</p>
+</div>
+</div>
+ </div>
+  
+  <div class="layui-form-item">
+    <label class="layui-form-label">图片</label>
+    <div class="layui-input-block">
+	  <input type="file" name="file" class="layui-upload-file" id="image" style="float: left;">
+	  <input type="text" name="pic" class="layui-input" style="position: absolute;left: 111px;top: 0px;width: 500px">
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+	  <button class="layui-btn" lay-submit="" lay-filter="banner_add">立即提交</button>
+      <button class="layui-btn layui-btn-primary" onclick="history.go(-1);return false;">返回</button>
+    </div>
+  </div>
+
+</form>
+<script type="text/javascript">
+function show_input(){
+var select_value = document.getElementById('xuan').value;
+document.getElementById('ze').value = select_value;
+}
+</script>
+<script>
+layui.use(['form', 'upload'],function(){
+  var form = layui.form()
+  ,jq = layui.jquery;
+  
+  layui.upload({
+    url: '{:url("upload/upimage")}'
+    ,elem:'#image'
+    ,before: function(input){
+      loading = layer.load(2, {
+        shade: [0.2,'#000']
+      });
+    }
+    ,success: function(res){
+      layer.close(loading);
+      jq('input[name=pic]').val(res.path);
+      layer.msg(res.msg, {icon: 1, time: 1000});
+    }
+  }); 
+  
+  form.on('submit(banner_add)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("banner/add")}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.href = '{:url("banner/index")}';
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+
+})
+</script>
+</div>
+</div>
+{include file="index_footer"}
+</body>
+</html>

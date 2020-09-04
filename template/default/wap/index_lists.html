@@ -1,0 +1,49 @@
+ <html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+        <title>{:config('web.WEB_TIT')} - 手机版</title>
+  		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        {include file="index/header"}
+    </head>
+    <body huaban_collector_injected="true">
+        <section class="aui-flexView">
+            <section class="aui-scrollView">
+                <div class="aui-modular aui-modular-two" style="padding-top:15px;background-image: linear-gradient(to bottom,#4404fb,#f350de);">
+                    <a href="javascript:;" class="aui-modular-item">
+            <form class="indexSearch"  action="/search.html">
+                <i class="iconfont icon-sousuo"></i>
+                <input style="background: rgb(255, 255, 255);" type="text" required="required" name="ks" value=""placeholder="搜索本站收录的网址">
+                <ul class="selectKeyword"></ul>
+            </form>
+           
+                    </a>
+                </div>
+              <div class="divHeight"></div>
+              {volist name="artbycatelist" id="vo" }   
+                <a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/view/{$vo.id}.html{else/}__INDEX__/view/{$vo.id}.html{/if}" class="aui-well-item">
+                    <div class="aui-well-item-hd">{$vo.name}</div>
+                  <div class="aui-well-item-fr"></div>
+                </a>
+                <div class="aui-fun-clear">
+                    <div class="aui-palace clearfix">
+                      {volist name="$vo.artlists" id="v" key="k" length="4"}  
+                        <a data-id="{$vo.id}" href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$v.id}.html{else/}__INDEX__/daohang/{$v.id}.html{/if}" target="_blank" class="aui-palace-grid">
+                            <div class="aui-palace-grid-icon">
+                                <img src="{if condition="$v['ico'] neq ''"}{$v.ico}{else/}/favicon.ico{/if}" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>{$v.title|msubstr=0,4,'utf-8',true}</h2>
+                            </div>
+                        </a>
+
+                      {/volist}  
+
+                    </div>
+                </div>
+               {/volist}  
+ {include file="index/footer"}
+              

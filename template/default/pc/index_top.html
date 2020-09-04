@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			网站排行榜 - {:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+		
+		<link rel="stylesheet" href="__PC__/css/top.css?20190621">
+      {include file="index/header"}
+<div class="bg">
+			<img src="__PC__/img/toptext.png">
+			<div class="type">				
+              <ul>
+                                 
+                <li> <a {if condition="$type eq 'today'" }class="hover"{/if} href="/top.html?type=today">今日榜单</a> </li>
+                                
+                <li> <a {if condition="$type eq 'art'" }class="hover"{/if} href="/top.html?type=art">总榜巅峰</a> </li>
+                     
+				</ul>
+			</div>
+		</div>
+<article style="margin-bottom:15px;">
+			<div>
+				<ul class="lists">
+
+                  
+                        {volist name="tops" id="vo"}
+                  <li class="layui-clear">		
+												
+                    <a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" class="weblogo" target="_blank">
+							
+                      <img src="{if condition="$vo['pic'] neq ''"}{$vo.pic}{else/}/public/img/cover.png{/if}"height="80">
+						
+                    </a>
+						
+                    <p class="introduce">
+							
+                      [{$vo.title}]	 - {$vo.lianjie}
+                    </p>
+                     <p class="introduce">
+                       {$vo.description}
+                    </p>
+						 
+                    <span class="click">{if condition="$type eq 'art'" }{$vo.view}{/if}{if condition="$type eq 'today'" }{$vo.count}{/if}人点击</span>
+						
+                    <a href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" class="go topdj" data-id="{$vo.id}" target="_blank">去看看</a>
+					
+                  </li>
+
+                  {/volist}	
+									
+              </ul>
+			</div>
+		</article>
+      <script>  
+        layui.use(['form', 'upload'],function() {     
+          var form = layui.form, 
+              jq = layui.jquery;     
+          jq(".topdj").bind("topdj").click(function() {       
+            var url = "{:url("index/index/topdj")}";   
+            var id = jq(this).data('id');
+            jq.post(url, {             
+              id: id      
+            },function(data) {});          
+          });                
+        })    
+      </script>
+		{include file="index/footer"}
+		</body>
+
+</html>

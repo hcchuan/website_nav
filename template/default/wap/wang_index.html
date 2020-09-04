@@ -1,0 +1,71 @@
+ 
+<html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>更新 - {:config('web.WEB_TIT')} - 手机版</title>
+  		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        {include file="index/header"}
+    </head>
+    <body huaban_collector_injected="true">
+        <section class="aui-flexView">
+            <section class="aui-scrollView">
+ 
+<header class="hui-header">
+        <h1>更新</h1>
+    </header>      
+
+        <div style="margin-top:40px;" class="news">
+                <a href="javascript:;" class="aui-well-item">
+                    <div class="aui-well-item-hd">全部</div>
+                </a>
+          <ul>
+  {volist name="tptc" id="vo "}
+            
+	<li>
+		<a  class="clearfix wangdj" data-id="{$vo.id}" href="{$vo.lianjie}" target="_blank" {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"{/if}>
+			<div>
+				<h3>
+					【{$vo.name}】{$vo.title}
+				</h3>
+			</div>
+		</a>
+	</li>
+ 
+{/volist}
+
+          </ul>
+        </div>   
+				<div class="pages">
+					{$tptc->render()}
+ </div>  
+<script>
+	layui.use(['form', 'upload'], function() {
+
+    var form = layui.form,
+
+        jq = layui.jquery;
+
+    jq(".wangdj").bind("wangdj").click(function() {
+
+        var url = "{:url("index/wang/wangdj")}";
+
+        var id = jq(this).data('id');
+
+        jq.post(url, {
+
+            id: id
+
+        }, function(data) {});
+
+    });
+
+})
+</script> 
+ {include file="index/footer"}
+              
+ 
+   

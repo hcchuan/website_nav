@@ -1,0 +1,202 @@
+.mys-wp{width:1200px;margin:0 auto;width:100%}
+.mys-cm{background: #ffffff;padding: 10px;margin: 10px;}
+.mys-md-4{float:left;width:25%}
+.mys-md-3{float:left;width:33.33333333%}
+.mys-md-2{float:left;width:50%}
+.mys-md-1{width:100%;}
+.mys-ml-3{float:left;width: 20%;}
+.mys-mr-3{float:right;width:30%}
+.mys-ml-7{float:left;width:70%}
+.mys-mr-7{float:right;width: 80%;}
+
+
+body {
+	background: #f2f2f2;
+}
+
+footer {
+	border-top: 1px solid #F6F6F6;
+}
+
+
+header > div nav a,header > div .time-winter .time,header > div .time-winter .winter {
+	color: #FFF;
+}
+
+header > div nav .hover,header > div nav a:hover {
+	color: #FFF;
+}
+
+header > div nav .border-bottom {
+	background: #FFF;
+}
+
+ 
+header {
+	position: relative;
+	background: transparent;
+	border-bottom: 0px solid #6d6d6d;
+}
+
+header > div nav a {
+	color: #FFF;
+}
+
+header > div .time-winter .time {
+	color: #FFF;
+}
+
+header > div .time-winter .winter {
+	color: #FFF;
+}
+
+article {
+	padding-top: 0px;
+}
+
+.content {
+	min-height: calc(100vh - 410px - 200px);
+}
+
+.content .left {
+	padding-top: 15px;
+	border-right: 1px solid #F6F6F6;
+	width: 210px;
+}
+
+.content .left a {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	margin-bottom: 15px;
+	text-align: center;
+	font-size: 16px;
+	color: #333;
+}
+
+.content .left a:nth-last-child(1) {
+	margin-bottom: 0;
+}
+
+.content .left a i {
+	vertical-align: middle;
+	margin-top: -2px;
+	font-size: 21px;
+	margin-right: 12px;
+}
+
+.content .left .hover {
+	color: #20c4ab;
+}
+
+.content .right {
+	width: calc(100% - 210px);
+	padding: 25px 40px;
+}
+
+.content .right .thisContent p {
+	line-height: 30px;
+	font-size: 15px;
+	margin-top: 15px;
+	color: #616161;
+}
+
+.idea, .send {
+	margin-top: 20px;
+	width: 580px;
+}
+
+.idea textarea, .send textarea {
+	display: block;
+	height: 300px;
+	width: 100%;
+	padding: 10px 15px;
+	line-height: 25px;
+	font-size: 14px;
+	color: #666;
+	border: 1px solid #F1F1F1;
+	resize: none;
+}
+
+.idea input[type='text'], .send input[type='text'] {
+	display: block;
+	height: 45px;
+	line-height: 25px;
+	color: #666;
+	width: 100%;
+	margin: 30px 0;
+	padding: 10px 20px;
+	border: 1px solid #F1F1F1;
+}
+
+.idea input[type='submit'], .send input[type='submit'] {
+	display: block;
+	width: 230px;
+	height: 45px;
+	text-align: center;
+	line-height: 45px;
+	background: #20c4ab;
+	color: #FFF;
+	border: 0;
+	border-radius: 3px;
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.idea input[type='submit']:hover, .send input[type='submit']:hover {
+	background: #26bda6;
+}
+
+.send {
+	float: left;
+}
+
+.tj {
+	float: right;
+	width: 400px;
+	max-width: calc(100% - 630px);
+	margin-top: 20px;
+	font-size: 14px;
+	line-height: 30px;
+	background: #fffaf5;
+	color: #f93b00;
+	padding: 15px 30px;
+	border-radius: 5px;
+}
+.myskdbj {
+ 
+    background: -webkit-linear-gradient(45deg, #dd00e1 0%, #7609e1 100%);
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+.myskd {
+ 
+    background-color: #f2f2f2; 
+    border: none;
+    color: #635e5e;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+.myskd:hover {
+background: -webkit-linear-gradient(45deg, #dd00e1 0%, #7609e1 100%);
+color: #ffffff;
+}
+.myskd1 {width: 250px;}
+.myskd2 {width: 50%;}
+.myskd3 {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+}

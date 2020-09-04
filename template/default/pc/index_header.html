@@ -1,0 +1,104 @@
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+  <link rel="stylesheet" href="__PC__/css/public.css?20197"> 
+  <link rel="stylesheet" href="__PC__/css/index.css?20190627"> 
+  <link rel="stylesheet" href="__PC__/css/mini.css"> 
+  <link rel="stylesheet" href="__PC__/css/update.css?20190613-5"> 
+  <script src="__ADMIN__/layui/layui.js" type="text/javascript"></script>
+  <script src="__ADMIN__/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+  <script src="__PC__/js/dropdown.js"></script>
+</head>
+<body>
+<style type="text/css">
+ .page-top {
+  {if condition="config('web.GZ_BB') eq 0"}{elseif condition="config('web.GZ_BB') eq 1"}background: -webkit-linear-gradient(50deg, #979498 20% ,#9992a5 50%, #a6a4a7 50%, #59575a 80%, #252325 100%);{elseif condition="config('web.GZ_BB') eq 2"}background: -webkit-linear-gradient(50deg, #e82c06 20% ,#f1a642 50%, #f70b4c 50%, #c16d04 80%, #f74b0a 100%);{elseif condition="config('web.GZ_BB') eq 3"}background: -webkit-linear-gradient(50deg, #1fa504 20% ,#189623 50%, #2dd60f 50%, #017315 80%, #276104 100%);{elseif condition="config('web.GZ_BB') eq 4"}background: -webkit-linear-gradient(50deg, #ec9225 20% ,#ce800f 50%, #ef8a11 50%, #d08110 80%, #f1870a 100%);{elseif condition="config('web.GZ_BB') eq 5"}background: -webkit-linear-gradient(50deg, #2e3dcc 20% ,#1c1ff7 50%, #4e63f9 50%, #032f90 80%, #072d82 100%);{elseif condition="config('web.GZ_BB') eq 6"}background: -webkit-linear-gradient(50deg, #09090a 20% ,#343435 50%, #434350 50%, #060910 80%, #090a0a 100%);{elseif condition="config('web.GZ_BB') eq 7"}{:config('web.XIN_A')}{/if} 
+}
+.dropdown-content {
+ 
+   {if condition="config('web.GZ_BB') eq 0"}{elseif condition="config('web.GZ_BB') eq 1"}border: 1px solid #848184;{elseif condition="config('web.GZ_BB') eq 2"}border: 1px solid #dc204c; {elseif condition="config('web.GZ_BB') eq 3"}border: 1px solid #1b8409;{elseif condition="config('web.GZ_BB') eq 4"}border: 1px solid #f1b008; {elseif condition="config('web.GZ_BB') eq 5"}border: 1px solid #1d20f5; {elseif condition="config('web.GZ_BB') eq 6"}  border: 1px solid #09090a; {elseif condition="config('web.GZ_BB') eq 7"}border: 1px solid #fff;{/if}
+}
+.fenleiw-content,.web-nav,footer,.type li .hover, .indexWebList1 li:hover,.myskdbj,.myskd:hover {
+   {if condition="config('web.GZ_BB') eq 0"}{elseif condition="config('web.GZ_BB') eq 1"}background: -webkit-linear-gradient(45deg, #848184 0%, #89878e 100%);{elseif condition="config('web.GZ_BB') eq 2"}    background: -webkit-linear-gradient(45deg, #dc204c 0%, #bc4b19 100%);{elseif condition="config('web.GZ_BB') eq 3"}background: -webkit-linear-gradient(45deg, #1b8409 0%, #47ba41 100%);{elseif condition="config('web.GZ_BB') eq 4"}  background: -webkit-linear-gradient(45deg, #f0880c 0%, #ec9226 100%);{elseif condition="config('web.GZ_BB') eq 5"}background: -webkit-linear-gradient(45deg, #1d20f5 0%, #3f58e3 100%);{elseif condition="config('web.GZ_BB') eq 6"}    background: -webkit-linear-gradient(45deg, #09090a 0%, #29292f 100%);{elseif condition="config('web.GZ_BB') eq 7"}{:config('web.XIN_A')}{/if}
+
+}
+.content > .left li .hover {
+   {if condition="config('web.GZ_BB') eq 0"}{elseif condition="config('web.GZ_BB') eq 1"}background: -webkit-linear-gradient(45deg, #848184 0%, #89878e 100%);{elseif condition="config('web.GZ_BB') eq 2"}    background: -webkit-linear-gradient(45deg, #dc204c 0%, #bc4b19 100%);{elseif condition="config('web.GZ_BB') eq 3"}background: -webkit-linear-gradient(45deg, #1b8409 0%, #47ba41 100%);{elseif condition="config('web.GZ_BB') eq 4"}background: -webkit-linear-gradient(45deg, #f1b008 0%, #b1cf0b 100%);{elseif condition="config('web.GZ_BB') eq 5"}background: -webkit-linear-gradient(45deg, #1d20f5 0%, #3f58e3 100%);{elseif condition="config('web.GZ_BB') eq 6"}    background: -webkit-linear-gradient(45deg, #09090a 0%, #29292f 100%);{elseif condition="config('web.GZ_BB') eq 7"}{:config('web.XIN_A')}{/if}
+border-left: 6px solid #96938d!important;
+  }
+ {if condition="config('web.GZ_BB') eq 0"}
+.content > .left li .hover {
+    background: -webkit-linear-gradient(45deg, #d302e1 0%, #7909e1 100%);
+}
+ {/if}
+{:config('web.XIN_B')} 
+</style>    
+	<header>
+		<nav class="web-nav">
+			<div class="container layui-clear">
+				<ul class="nav-ul">
+  
+                  {if condition="config('web.PZ-FG') eq 1"}
+                  <a href="/" class="logo">
+						<img src="{:config('web.logo')}" height="60">
+					</a>
+                  {elseif condition="config('web.PZ-FG') eq 2"}     
+                  {/if}
+					<div class="hover">
+						<li class="hover">
+							<a href="/">
+								网站首页
+							</a>
+						</li>
+						<li class="fenleiw hover">
+							<a href="/list.html">
+								网址分类
+							</a>
+							<div class="fenleiw-content">
+								{volist name="tpto" id="vo"}
+								<lii>
+									{if condition="config('web.WEB_URL') eq 1"}
+									<a href="__ROOT__/view/{$vo.id}.html" class="css{$vo.id}">
+										{else/}
+										<a href="__INDEX__/view/{$vo.id}.html" class="css{$vo.id}">
+											{/if}{$vo.name}
+										</a>
+								</lii>
+								{/volist}
+							</div>
+						</li>
+                       {volist name="GZdh" id="vo"}
+						<li class="hover">
+							<a href="{$vo.links}" {if condition="$vo['dj'] neq 1"}{else/}target="_blank"{/if}>
+								{$vo.name}
+							</a>
+						</li>
+                      {/volist}
+
+					</div>
+                  {if condition="config('web.PZ-TIME') eq 1"}
+                  <div id="Time"> </div>
+                  {elseif condition="config('web.PZ-TIME') eq 2"}     
+                  {elseif condition="config('web.PZ-TIME') eq 3"}  
+                  {/if}
+                   
+				</ul>
+			</div>
+            
+		</nav>
+	</header>
+<script>
+window.onload=function(){  
+setInterval(function(){   
+var date=new Date();   
+var year=date.getFullYear(); //获取当前年份   
+var mon=date.getMonth()+1; //获取当前月份   
+var da=date.getDate(); //获取当前日   
+var day=date.getDay(); //获取当前星期几   
+var h=date.getHours(); //获取小时   
+var m=date.getMinutes(); //获取分钟   
+var s=date.getSeconds(); //获取秒   
+var d=document.getElementById('Time');    
+d.innerHTML='当前时间:'+year+'年'+mon+'月'+da+'日'+'星期'+day+' '+h+':'+m+':'+s;  },1000)  }
+</script>

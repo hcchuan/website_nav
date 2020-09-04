@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>{$t.title} - {:config('web.WEB_TIT')}</title>
+  <meta name="keywords" content="{:config('web.WEB_KEY')}">
+  <meta name="description" content="{:config('web.WEB_DES')}">
+
+
+<link rel="stylesheet" href="__ADMIN__/wangEditor/css/wangEditor.min.css">
+ <link rel="stylesheet" href="__PC__/css/font.css">
+
+<style type="text/css">
+.thisContent p {
+    line-height: 30px;
+    font-size: 15px;
+    margin-top: 15px;
+    color: #616161;
+}
+.myskdbj{$t.id} {
+    background: -webkit-linear-gradient(45deg, #dd00e1 0%, #7609e1 100%);
+    border: none;
+    color: #ffffff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px 2px;
+    cursor: pointer;
+}
+  .myskdbj{$t.id} {
+   {if condition="config('web.GZ_BB') eq 0"}{elseif condition="config('web.GZ_BB') eq 1"}background: -webkit-linear-gradient(45deg, #848184 0%, #89878e 100%);{elseif condition="config('web.GZ_BB') eq 2"}    background: -webkit-linear-gradient(45deg, #dc204c 0%, #bc4b19 100%);{elseif condition="config('web.GZ_BB') eq 3"}background: -webkit-linear-gradient(45deg, #1b8409 0%, #47ba41 100%);{elseif condition="config('web.GZ_BB') eq 4"}  background: -webkit-linear-gradient(45deg, #f0880c 0%, #ec9226 100%);{elseif condition="config('web.GZ_BB') eq 5"}background: -webkit-linear-gradient(45deg, #1d20f5 0%, #3f58e3 100%);{elseif condition="config('web.GZ_BB') eq 6"}    background: -webkit-linear-gradient(45deg, #09090a 0%, #29292f 100%);{elseif condition="config('web.GZ_BB') eq 7"}{:config('web.XIN_A')}{/if}
+
+}
+</style>
+  {include file="index/header"}
+<article>
+	<div class="mys-wp cl">
+		<ul>
+			<li class="mys-ml-3">
+				<div class="mys-cm">
+					<a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/add.html{else/}__INDEX__/add.html{/if}" class="myskd myskd3">
+						<i class="layui-icon">
+							
+						</i>
+						网站提交
+					</a>
+                  {volist name="dan" id="vo" length="28"}
+ 
+                  
+					<a href="/dans/{$vo.id}.html" class="myskd myskd3 myskdbj{$vo.id}">
+						<i class="layui-icon">
+							စ
+						</i>
+						{$vo.title}
+					</a>
+
+
+                  {/volist}
+				</div>
+			</li>
+			<li class="mys-mr-7">
+				<div class="mys-cm">
+					<div class="fly-panel" pad20="" style="padding-top: 5px;">
+						<div class="layui-form layui-form-pane">
+	 
+							<div class="layui-tab layui-tab-brief" lay-filter="user">
+
+                              <div class="thisContent">
+						<div class="title">
+							<h3>{$t.title}</h3>
+                          
+						</div>
+                                <div class="wangEditor-container"> 
+                                <div class=" wangEditor-txt">
+                        
+						<p>
+							{$t.content|htmlspecialchars_decode}
+						</p>
+						</div>
+					 	</div>
+					</div>
+			
+							</div>
+						</div>
+					</div>
+			</li>
+		</ul>
+		</div>
+</article>
+<div class="main layui-clear">
+</div>
+
+{include file="index/footer"}
+</body>
+</html>

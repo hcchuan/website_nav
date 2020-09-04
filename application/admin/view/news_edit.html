@@ -1,0 +1,110 @@
+<!--
+ *  Guojiz网址导航系统
+ *	www.guojiz.com
+ *  作者：梦雨
+ *  @ QQ50361804
+-->
+{include file="index/header"}
+<link rel="stylesheet" href="__ADMIN__/wangEditor/css/wangEditor.min.css">
+<script type="text/javascript" src="__ADMIN__/wangEditor/js/wangEditor.min.js"></script>
+<body>
+<div class="fly-panel fly-panel-user">
+<div class="tpt—admin">
+<fieldset class="layui-elem-field layui-field-title">
+  <legend>修改</legend>
+</fieldset>
+   
+<form class="layui-form">
+  <input type="hidden" name="id" value="{$tptc.id}">
+
+  <div class="layui-form-item" style="width: 300px;">
+    <label class="layui-form-label">接入网站</label>
+    <div class="layui-input-block">
+      <select name="tid">
+	  {volist name="tptcs" id="vo"}
+      <option {if condition="$tptc['tid'] eq $vo['id']"}selected="selected"{/if} value="{$vo.id}">{$vo.name}</option>
+      {/volist}
+	  </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">标题</label>
+    <div class="layui-input-block">
+      <input type="text" name="title" value="{$tptc.title}" required lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+ 
+
+		<div class="layui-form-item">
+          <label for="L_title" class="layui-form-label">浏览量</label>
+          <div class="layui-input-block">
+            <input type="text" name="view" value="{$tptc.view}" autocomplete="off" class="layui-input" style="width: 100px;">
+          </div>
+        </div>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">描述</label>
+    <div class="layui-input-block">
+      <textarea id="textarea" name="content" style="height:300px;width: 100%;">
+      {$tptc.content}</textarea>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+	  <button class="layui-btn" lay-submit="" lay-filter="news_edit">立即提交</button>
+      <button class="layui-btn layui-btn-primary" onclick="history.go(-1);return false;">返回</button>
+    </div>
+  </div>
+
+</form>
+</div>
+</div>
+<script type="text/javascript">
+    var editor = new wangEditor('textarea');
+	editor.config.uploadImgUrl = '{:url("html/doUploadPic")}';
+	editor.config.uploadImgFileName = 'FileName';
+    editor.create();
+</script>
+<script>
+layui.use(['form', 'upload'],function(){
+  var form = layui.form()
+  ,jq = layui.jquery;
+  
+  layui.upload({
+    url: '{:url("upload/upimage")}'
+    ,elem:'#image'
+    ,before: function(input){
+      loading = layer.load(2, {
+        shade: [0.2,'#000']
+      });
+    }
+    ,success: function(res){
+      layer.close(loading);
+      jq('input[name=pic]').val(res.path);
+      layer.msg(res.msg, {icon: 1, time: 1000});
+    }
+  });
+
+  form.on('submit(news_edit)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("news/edit")}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.href = '{:url("news/index")}';
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+
+})
+</script>
+{include file="index_footer"}
+</body>
+</html>

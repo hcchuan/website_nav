@@ -1,0 +1,1 @@
+<?php return ['GJJF-DL'=>'0','GJJF-ZC'=>'1','GJJF-KUAI'=>'500','GJJF-MING'=>'金币','GJJF-ZCT'=>'1','ADD_ID'=>'2088','ADD_KEY'=>'000','ADD_BL'=>'100','ADD_MC'=>'导航积分充值','ADD_CZ'=>'1','ADD_POINT'=>'',]; 

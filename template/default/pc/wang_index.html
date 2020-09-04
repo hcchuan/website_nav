@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>最近更新 - {:config('web.WEB_TIT')}</title>
+  <meta name="keywords" content="{:config('web.WEB_KEY')}">
+  <meta name="description" content="{:config('web.WEB_DES')}">
+<style type="text/css">
+.wang {
+	border: 1px solid #fff;
+	background: #f1f1f1;
+}
+.wang{border:1px solid #ececec;background:#FFF;display:block;width:83px;text-align:center;color:#333;font-size:14px;border-radius:19px;max-width:100%;overflow:hidden;margin:0px auto;transition:0.2s all}
+.content {
+    background: #fafafa;
+    margin-bottom: 10px;
+}
+.content > .right {
+    background: #eeeeee;
+    border: 20px solid #fafafa;
+}
+.content > .right {
+    padding-top: 20px;
+}
+.content > .left li .hover {
+    background: -webkit-linear-gradient(45deg, #d302e1 0%, #7909e1 100%);
+    border-radius: 0px 50px 50px 0px;
+    border-left: 6px solid #4c0ce0!important;
+}
+</style>
+{include file="index/header"}
+<article>
+ 
+<div class="content layui-clear">
+	<ul class="left">
+		<li>
+			<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/wang.html{else/}__INDEX__/wang.html{/if}" class="hover">
+				<img src="__PC__/img/lie.png">
+				所有更新
+			</a>
+		</li>
+		{volist name="wangcate" id="vo"}
+		<li>
+			<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/w/{$vo.id}.html{else/}__INDEX__/w/{$vo.id}.html{/if}" class="wang{$vo.id}">
+				<img src="{$vo.pic}">
+				{$vo.name}
+			</a>
+		</li>
+		{/volist}
+		<li>
+			<a href="http://wpa.qq.com/msgrd?v=3&uin={:config('web.WEB_QQ')}&site=qq&menu=yes" target="_blank">
+				<img src="__PC__/img/qq.png">
+				申请入驻
+			</a>
+		</li>
+	</ul>
+	<div class="right">
+		<div class="ulttile layui-clear">
+			<div>
+				来源网站
+			</div>
+			<div>
+				内容标题
+			</div>
+			<div>
+				更新时间
+			</div>
+			<div>
+				围观人数
+			</div>
+			<div>
+				操作
+			</div>
+		</div>
+		<ul class="updatelist">
+          {volist name="tptc" id="vo" }  
+			<li class="layui-clear" data-r_id="48562">
+				<div>
+					{$vo.name}
+				</div>
+				<div>
+					<a data-id="{$vo.id}" href="{$vo.lianjie}" target="_blank"
+					class="url add_r wangdj">
+						{$vo.title}
+					</a>
+				</div>
+				<div class="new-time" {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"{/if}>
+					{$vo.time|friendlyDate}
+				</div>
+				<div>
+					{$vo.view}
+				</div>
+				<div>
+					<a href="{$vo.lianjie}" class="wang wangdj" data-id="{$vo.id}" target="_blank"
+					class="open add_r">
+						浏览
+					</a>
+				</div>
+			</li>
+           {/volist}
+		</ul>
+<hr style="background-color: rgba(0,0,0,0);">
+<div class="pages">
+{$tptc->render()}
+ </div>  
+<hr style="background-color: rgba(0,0,0,0);">
+  </div>
+</div>
+ 
+<script>
+	layui.use(['form', 'upload'], function() {
+
+    var form = layui.form,
+
+        jq = layui.jquery;
+
+    jq(".wangdj").bind("wangdj").click(function() {
+
+        var url = "{:url("index/wang/wangdj")}";
+
+        var id = jq(this).data('id');
+
+        jq.post(url, {
+
+            id: id
+
+        }, function(data) {});
+
+    });
+
+})
+</script>
+</article>
+{include file="index/footer"}
+<script>
+</script>
+</body>
+</html>

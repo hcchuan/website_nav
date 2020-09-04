@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+		{include file="index/header"}
+      <div class="guojiz">
+      {if condition="config('web.PZ-FG') eq 1"}
+		 
+			<div class="indexSearch">
+				<div class="layui-clear">
+					<a href="https://www.baidu.com" class="bdlogo" target="_blank">
+						<img src="__PC__/img/baidu1.png">
+					</a>
+					<div class="mys-bar barb">
+						<input name="bar" type="radio" id="tab-4" checked="checked">
+						<label for="tab-4">
+							百度搜索
+						</label>
+						<div class="mys-bar-con">
+							<div class="search bar4">
+								<form class="form" action="https://www.baidu.com/s" target="_blank">
+									<input type="text" class="soso" required="required" name="wd" value=""
+									placeholder="百度搜索">
+									<button class="sosoan" type="submit">
+									</button>
+								</form>
+							</div>
+						</div>
+						<input name="bar" type="radio" id="tab-1">
+						<label for="tab-1">
+							本地搜索
+						</label>
+						<div class="mys-bar-con">
+							<div class="search bar1">
+								<form class="form" action="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/search.html{else/}__INDEX__/search.html{/if}">
+									<input type="text" class="soso" required="required" name="ks" value=""
+									placeholder="搜索本站收录的网址">
+									<button target="_blank" class="sosoan" type="submit">
+									</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        
+          {elseif condition="config('web.PZ-FG') eq 2"}
+       <div class="page-top" style="height:600px;margin-top: -14px;"  >
+		<div class="wraps">
+				<div class="head_logo_so">
+					<div class="head_logo_h1">
+						<div class="logo_titl"><a href="/" target="_parent"><img src="{:config('web.logo')}" height="60" alt=""></a><span></span></div>
+						<div class="head_h1">
+							<h1>Guojiz网址导航大全</h1>
+							<p>{:config('web.WEB_TIT')}</p>
+						</div>
+					</div>
+					<div class="head_soso">
+						<form action="https://www.baidu.com/s" target="_blank">
+						<div class="container">
+							<div class="search">
+							    <input type="text" class="soso" required="required" name="wd" value=""placeholder="百度搜索一下">
+                              
+								    </div>
+							</div>
+						<button class="submit" type="submit"  style="{if condition="config('web.GZ_BB') eq 0"}{elseif condition="config('web.GZ_BB') eq 1"}background: -webkit-linear-gradient(45deg, #848184 0%, #89878e 100%);{elseif condition="config('web.GZ_BB') eq 2"}    background: -webkit-linear-gradient(45deg, #dc204c 0%, #bc4b19 100%);{elseif condition="config('web.GZ_BB') eq 3"}background: -webkit-linear-gradient(45deg, #1b8409 0%, #47ba41 100%);{elseif condition="config('web.GZ_BB') eq 4"}background: -webkit-linear-gradient(45deg, #f1b008 0%, #b1cf0b 100%);{elseif condition="config('web.GZ_BB') eq 5"}background: -webkit-linear-gradient(45deg, #1d20f5 0%, #3f58e3 100%);{elseif condition="config('web.GZ_BB') eq 6"}    background: -webkit-linear-gradient(45deg, #09090a 0%, #29292f 100%);{elseif condition="config('web.GZ_BB') eq 7"}{:config('web.XIN_A')}{/if}" >百度一下</button>
+					</form></div>
+					<div id="dvmq" style=" height: 22px;" class="box">
+						<h2>随机推荐:</h2>
+					   <ul>	 
+                         {volist name="guojizcai " id="vo " length="8"}			        
+                         <li><a class="topdj" data-id="{$vo.id}" href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank">	{$vo.title|msubstr=0,10,'utf-8',true}</a></li>
+                         {/volist}				   
+                      </ul>
+	
+                  </div>
+
+                  <div style="background-color: #0e0e0d36;height: 70px;border-radius: 2px;padding:5px;margin-top: 120px;margin-bottom:0px;">
+                    <h3 style="color: #ff00ff;"><marquee scrollamount="5" font="" style="margin-top: 20px;COLOR: #c1bebe;FONT-SIZE: 15pt;WIDTH: 100%;"><b>{:config('web.PZ-GD')}</b></marquee></h3>
+                  </div>				
+          </div>	
+				<div class="head_new_gj">
+				<div class="head_new">
+					<ul>
+                      {volist name="tpto" id="vo" length="10"}					
+                      <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/view/{$vo.id}.html{else/}__INDEX__/view/{$vo.id}.html{/if}" title="{$vo.name}">{$vo.name}</a></li>
+                      {/volist}		
+                       <li><a href="/list.html" title="更多..">查看全部</a></li>
+                  </ul>
+				</div>
+				<div class="zhanbang">
+					<div><a href="#">收录网站 {$swang} 个</a></div>
+					<div><a href="#">未审站点 {$wwang} 个</a></div>
+					<div><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/add.html{else/}__INDEX__/add.html{/if}">申请收录</a></div>
+				</div>
+				<div class="gongju">
+					<div class="gongju_title">免费工具<a href="#" class="iconfont icon-gengduo1"><span></span></a></div>
+					<div class="xiaogongju">
+                      {volist name="guojizgj " id="vo " length="10"}
+						<div class="guojiz_icon"><img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}"><a  class="topdj" data-id="{$vo.id}" href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank" >{$vo.title}</a></div>
+                      {/volist}
+
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div> 
+          {/if}
+			<article style="margin-top:-10px;">
+				<div>
+					<div class="indexgg layui-clear">
+						{volist name="guojizgg" id="vo"}{if condition="$vo['fl'] eq 1"}{$vo.title|htmlspecialchars_decode}{/if}{/volist}
+					</div>
+                  {if condition="config('web.PZ-J') eq 1"}
+					<ul class="indexWebList1 layui-clear">
+						<div class="title">
+							<h3>
+								优站精选
+							</h3>
+							<!--<a style="color: #9E9E9E;" href="/choice.html" target="_blank">更多...</a> -->
+						</div>
+						{volist name="guojizjing" id="vo" length="28"}
+						<li class="dropdown">
+							<a class="topdj" data-id="{$vo.id}" href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank">
+								<img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}">
+								{$vo.title}
+							</a>
+							<div class="dropdown-content">
+								<a href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" class="topdj" data-id="{$vo.id}" target="_blank">
+									直接访问
+								</a>
+								{if condition="config('web.WEB_URL') eq 1"}
+								<a href="__ROOT__/daohang/{$vo.id}.html" target="_blank">
+									{else/}
+									<a href="__INDEX__/daohang/{$vo.id}.html" target="_blank">
+										{/if}网站详情
+									</a>
+							</div>
+						</li>
+						{/volist}
+					</ul>
+                  {/if}
+                  {volist name="guojizgg" id="vo"}{if condition="$vo['fl'] eq 3"}{$vo.title|htmlspecialchars_decode}{/if}{/volist}
+                  {if condition="config('web.PZ-ZD') eq 1"}
+					<ul class="indexWebList1 layui-clear">
+						<div class="title">
+							<h3>
+								置顶推荐
+							</h3>
+						</div>
+						{volist name="guojiztui" id="vo" length="28"}
+						<li class="dropdown">
+							<a class="topdj" data-id="{$vo.id}" href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank">
+								{if condition="$vo['icos'] eq 1"} <img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}">{else/}{/if}
+								{$vo.title}
+							</a>
+							<div class="dropdown-content">
+								<a class="topdj" data-id="{$vo.id}" href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank">
+									直接访问
+								</a>
+								{if condition="config('web.WEB_URL') eq 1"}
+								<a href="__ROOT__/daohang/{$vo.id}.html" target="_blank">
+									{else/}
+									<a href="__INDEX__/daohang/{$vo.id}.html" target="_blank">
+										{/if}网站详情
+									</a>
+							</div>
+						</li>
+						{/volist}
+					</ul>
+                  {/if}
+					<div class="other layui-clear">
+						<div class="left">
+                          
+
+
+                          <div class="slideshow-container">
+   
+                            {volist name="guojizxt" id="vo "}
+                              <a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" target="_blank">
+  
+                            <div class="mySlides fade">
+    
+                              <div class="numbertext">推荐</div>
+   
+                              <img src="{$vo.content|Pic}" style="height: 220px;width:100%">
+   
+                              <div class="text">{$vo.title}</div>
+ 
+                            </div>
+
+                            </a>
+                            {/volist}
+
+   
+                            <a class="prev" onclick="plusSlides(-1)">❮</a>
+ 
+                            <a class="next" onclick="plusSlides(1)">❯</a>
+
+                          </div>   
+ 
+    
+                          {if condition="config('web.PZ-GJ') eq 1"}
+							<div class="tools layui-clear">
+								<div class="title">
+									<h3>
+										免费工具
+									</h3>
+									<a class="iconfont icon-gengduo1" href="#">
+									</a>
+								</div>
+								{volist name="guojizgj " id="vo " length="8"}
+								<a class="topdj" data-id="{$vo.id}" href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank">
+									<img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}">
+									{$vo.title}
+								</a>
+								{/volist}
+							</div>
+                          {/if}
+                          
+                          
+                          {volist name="guojizgg" id="vo"}{if condition="$vo['fl'] eq 2"}{$vo.title|htmlspecialchars_decode}{/if}{/volist}
+                          
+                          
+                          {if condition="config('web.PZ-CAI') eq 1"}
+							<div class="top">
+								<div class="title">
+									<h3>
+										猜你喜欢
+									</h3>
+									<!-- <a class="iconfont icon-gengduo1" href="/bang.html"></a>-->
+								</div>
+								<ul class="content_rank">
+									{volist name="guojizcai " id="vo " length="10"}
+									<li>
+										<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" target="_blank" class="layui-clear">
+											<h3>
+												{$vo.title|msubstr=0,10,'utf-8',true}
+											</h3>
+											<span>
+												{$vo.view} 人次
+											</span>
+										</a>
+									</li>
+									{/volist}
+								</ul>
+							</div>
+                          {/if}
+                          
+                          {if condition="config('web.PZ-GX') eq 1"}
+							<div class="top">
+								<div class="title">
+									<h3>
+										资源更新
+									</h3>
+									<a href="/wang.html">...</a>
+								</div>
+								<ul class="content_rank">
+									{volist name="wang " id="vo " length="10"}
+                                   {if condition="$vo['open'] eq 1"}
+									<li>
+										<a href="{$vo.lianjie}" target="_blank" class="layui-clear">
+											<h3>
+												{$vo.title|msubstr=0,10,'utf-8',true}
+											</h3>
+											<span {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"{/if}>
+												{$vo.time|friendlyDate}
+											</span>
+										</a>
+									</li>
+                                    {/if}
+									{/volist}
+								</ul>
+							</div>
+                          {/if}
+                          
+                          {if condition="config('web.PZ-PHB') eq 1"}
+							<div class="top">
+								<div class="title">
+									<h3>
+										排行榜
+									</h3>
+								</div>
+								<ul class="content_rank">
+									{volist name="guojiztop " id="vo " length="10"}
+									<li>
+										<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" target="_blank" class="layui-clear">
+											<i>
+											</i>
+											<h3>
+												{$vo.title|msubstr=0,10,'utf-8',true}
+											</h3>
+											<span>
+												{$vo.view} 人次
+											</span>
+										</a>
+									</li>
+									{/volist}
+								</ul>
+							</div>
+                          {/if}
+                          
+                          {if condition="config('web.PZ-JPH') eq 1"}
+							<div class="top">
+								<div class="title">
+									<h3>
+										今日排行
+									</h3>
+								</div>
+								<ul class="content_rank">
+									{volist name="guojizjin " id="vo " length="10"}
+									<li>
+										<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" target="_blank" class="layui-clear">
+											<i>
+											</i>
+											<h3>
+												{$vo.title|msubstr=0,10,'utf-8',true}
+											</h3>
+											<span>
+												{$vo.count} 人次
+											</span>
+										</a>
+									</li>
+									{/volist}
+								</ul>
+							</div>
+                          {/if}
+                          
+                          
+						</div>
+                      {if condition="config('web.PZ-NEW') eq 1"}
+						<div class="right you">
+                           
+							<ul class="indexWebList moneyList layui-clear">
+								<div class="title">
+									<h3>
+										最新收录
+									</h3>
+								</div>
+								{volist name="guojiznews" id="vo " length="10"}
+								<li>
+									<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" target="_blank">
+										{if condition="$vo['icos'] eq 1"} 
+										<img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}">
+										{else/}{/if}{$vo.title}
+									</a>
+								</li>
+								{/volist}
+							</ul>
+						</div>
+                      {/if}
+                      {if condition="config('web.PZ-FL') eq 1"}
+						<div class="right you">
+							<div class="title">
+								<h3>
+									分类
+								</h3>
+							</div>
+							{volist name="artbycatelist" id="vo" }
+							<div class="list layui-clear">
+								<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/view/{$vo.id}.html{else/}__INDEX__/view/{$vo.id}.html{/if}" target="_blank" class="titles">
+									{$vo.name}
+								</a>
+								<ul>
+									{volist name="$vo.artlists" id="v" key="k"}
+									<li>
+										<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$v.id}.html{else/}__INDEX__/daohang/{$v.id}.html{/if}" target="_blank">
+											{if condition="$v['icos'] eq 1"} 
+											<img src="{if condition="$v['ico'] neq ''"}{$v.ico}{else/}http://{$v.lianjie}/favicon.ico{/if}">
+											{/if} {$v.title}
+										</a>
+									</li>
+									{/volist}
+									<li>
+										<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/view/{$vo.id}.html{else/}__INDEX__/view/{$vo.id}.html{/if}" target="_blank">
+											<i class="layui-icon">
+												
+											</i>
+										</a>
+									</li>
+								</ul>
+							</div>
+							{/volist}
+						</div>
+                      {/if}
+                      {if condition="config('web.PZ-NEWS') eq 1"}
+						<div class="right you">
+							<div class="newslist">
+								<div class="title">
+									<h3>
+										更新文章
+									</h3>
+									<a style="color: #9E9E9E;" href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/news.html{else/}__INDEX__/news.html{/if}" target="_blank">
+										更多...
+									</a>
+								</div>
+								<ul class="layui-clear" style="overflow:scroll;overflow-x:hidden;height:472px;">
+									{volist name="guojizx " id="vo "}
+									<li>
+										<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" class="layui-clear" target="_blank">
+											<div class="img">
+												<img src="{$vo.content|Pic}" height="120">
+											</div>
+											<div class="info" >
+												<h3 {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"{/if}>
+													{$vo.title}
+												</h3>
+												<span {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"{/if}>
+													{$vo.time|date='m-d',###}
+												</span>
+											</div>
+										</a>
+									</li>
+									{/volist}
+								</ul>
+							</div>
+						</div>
+                       {/if}
+					</div>
+				</div>
+			</article>
+		</div>    
+      <script>  
+        layui.use(['form', 'upload'],function() {     
+          var form = layui.form, 
+              jq = layui.jquery;     
+          jq(".topdj").bind("topdj").click(function() {       
+            var url = "{:url("index/index/topdj")}";   
+            var id = jq(this).data('id');
+            jq.post(url, {             
+              id: id      
+            },function(data) {});          
+          });                
+        })    
+      </script>
+		{include file="index/footer"}
+		<script>
+		</script>
+		</body>
+  <script src="__PC__/js/xin.js"></script>
+  {if condition="config('web.PZ-YY') eq 1"} {/if}
+</html>

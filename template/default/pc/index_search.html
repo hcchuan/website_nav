@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			搜索‘<?php echo input( 'ks');?>’相关的网站 - {:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+		
+		<link rel="stylesheet" href="__PC__/css/lists.css">
+      {include file="index/header"}
+		<article>
+			<div>
+				<div class="fenlei">
+					<div class="title searchweb">
+						<h3>
+							搜索
+							<span style="color: #FF0000;">
+								‘
+								<?php echo input( 'ks');?>
+									’
+							</span>
+							相关的网站
+						</h3>
+						<form action="{:url('index/index/search')}">
+							<input type="text" name="ks" required="required" value="<?php echo input('ks');?>"
+							placeholder="请输入搜索的关键字" />
+							<input type="submit" class="layui-icon" id="search_btn" value="&#xe615;">
+						</form>
+					</div>
+				</div>
+				<div class="lists" style="margin-bottom:15px;">
+					<ul class="layui-clear" id="listli">
+						{volist name="tptc" id="vo"}
+						<li>
+							<a href="{if condition=" config( 'web.WEB_URL') eq 1
+							"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" target="_blank">
+								<div class="img">
+									 <img src="{if condition="$vo['pic'] neq ''"}{$vo.pic}{else/}/public/img/cover.png{/if}" height="150">
+								</div>
+								<div align="center">
+									<p class="introduce">
+										[{$vo.title}]
+									</p>
+								</div>
+							</a>
+						</li>
+						{/volist}
+					</ul>
+				</div>
+				<hr style="background-color: rgba(0,0,0,0);">
+				<div class="pages">
+					{$tptc->render()}
+				</div>
+				<hr style="background-color: rgba(0,0,0,0);">
+		</article>
+		{include file="index/footer"}
+		<script>
+		</script>
+		</body>
+
+</html>

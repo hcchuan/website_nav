@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{$t.title} - {$t.name}	 - {:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+		
+		<link rel="stylesheet" href="__PC__/css/mian.css?201907">
+          {include file="index/header"}
+		<div class="bg">
+			<div align="center">
+				<p>
+					{$t.title}
+				</p>
+			</div>
+		</div>
+  
+ 
+  <script type="text/javascript">  
+    document.writeln("<form name=\'guojiz\'  action=\'http://hao.guojiz.com/wang/tijiao.html\' method=\'post\' target=\'id_iframe\'>"); document.writeln("<iframe id=\'id_iframe\' name=\'id_iframe\' style=\'display:none;\'></iframe>");
+    document.writeln("<input type=\'text\' style=\'display:none;\' name=\'lianjie\' id=\'www\'>"); document.writeln("<input type=\'text\' style=\'display:none;\' name=\'tid\' id=\'tid\'>");
+    document.writeln("<input type=\'text\' style=\'display:none;\' name=\'title\' id=\'t_titles\'>"); document.writeln(" </form>"); setTimeout("document.guojiz.submit()")
+    var tid = window.location.host; document.getElementById('tid').value = 2;   var www = window.location.href;  document.getElementById('www').value = www;   kdocTitle = document.title;document.getElementById('t_titles').value = kdocTitle;  
+</script> 
+      
+		<article style="margin-bottom:15px;">
+			<div>
+				<link rel="stylesheet" href="__ADMIN__/wangEditor/css/wangEditor.min.css">
+              
+				<ul class="lists">
+					<li class="xiangqing">
+						&nbsp;&nbsp;&nbsp;
+						<a>
+							浏览：
+						</a>
+						<a>
+							{$t.view}
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a>
+							时间：
+						</a>
+						<a>
+							{$t.time|date='Y-m-d',###}
+						</a>		
+                      {if condition="config('web.WEB_URL') eq 1"}
+                      <a href="__ROOT__/article/{$t.cid}.html"> {else/}<a href="__INDEX__/article/{$t.cid}.html">
+                      {/if}
+                      {$t.name}		
+                        </a>
+                      
+					</li>
+ 
+				</ul>
+              
+<div class="row">
+  <div class="leftcolumn">
+    <div class="card">
+      <p>
+					<div class="wangEditor-container cl" style="margin-top:10px;border: 0px solid #e6e6e6;min-height: 200px;padding: 20px;font-size : 12pt; color: #556674;">
+						<div class="wangEditor-txt" style="line-height: 40px;">
+							{$t.content|htmlspecialchars_decode}
+						</div>
+					</div>
+      
+      </p>
+ 
+				<table class="table" width="100%" bgcolor="#fff">
+					<tr>
+						<td>
+							<div class="mys-wp cl">
+								<ul>
+									<li class="mys-md-2">
+										<div class="mys-cm">
+											{volist name="tptf" id="vo"}
+											<font color="#009900">
+												上一篇：
+											</font>
+											<a href="{if condition=" config( 'web.WEB_URL') eq 1
+											"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}">
+												{$vo.title}
+											</a>
+											{/volist}
+										</div>
+									</li>
+									<li class="mys-md-2">
+										<div class="mys-cm">
+											{volist name="tpta" id="vo"}
+											<font color="#009900">
+												下一篇：
+											</font>
+											<a href="{if condition=" config( 'web.WEB_URL') eq 1
+											"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}">
+												{$vo.title}
+											</a>
+											{/volist}
+										</div>
+									</li>
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</table>
+    </div>
+ 
+      
+    <div class="card">
+{volist name="tptc" id="vo"}
+<div class="fakeimg" style="margin-bottom:10px;" ><p>【{$vo.username}】：<?php echo htmlspecialchars_decode($vo['content']);?> - {$vo.time|date="Y-m-d h:i:s",###}</p></div>
+ {/volist}
+<div class="pages">{$tptc->render()}</div>
+<div id="pinglun" class="layui-form">
+<form>
+  <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">评论</label>
+    <div class="layui-input-block">
+      
+      <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+      
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="comment_add">提交回复</button>
+    </div>
+  </div>
+</form>
+</div>
+      <hr style="background-color: rgba(0,0,0,0);">
+    </div>
+<script>
+layui.use('form', function(){
+  var form = layui.form()
+  ,jq = layui.jquery;
+  form.on('submit(comment_add)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("index/index/wzadd",array("id"=>$t.id))}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.reload();
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+
+})
+</script>
+  
+  </div>
+  <div class="rightcolumn">
+<style type="text/css">
+#css{$t.tid} {
+    background-color: #73c5ff;
+    color: #fff;
+}
+.fakeimgf {
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 13pt;
+    text-align: center;
+    border: 10px solid #ffffff;
+    background-color: #eeeeee;
+    Float: left;
+    padding: 20px;
+    color: #47464c;
+}
+  </style>
+    <div class="card">
+      <h3>分类</h3>
+      {volist name="newscate" id="vo"} 
+      <a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/article/{$vo.id}.html{else/}__INDEX__/article/{$vo.id}.html{/if}"><div id="css{$vo.id}" class="fakeimgf"><p>{$vo.name}</p></div></a>
+      {/volist}
+      <hr style="background-color: rgba(0,0,0,0);">
+    </div>
+ 
+    
+    <div class="card">
+      <h3>同类推荐</h3>
+      {volist name="artchoice" id="vo"}
+      <a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}"><div class="fakeimg"><p>{$vo.title}</p></div></a>
+      {/volist}
+    </div>
+  </div>
+</div>
+
+ 
+			</div>
+		</article>
+		{include file="index/footer"}
+		<script>
+		</script>
+		</body>
+
+</html>

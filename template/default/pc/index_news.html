@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			全部文章 - {:config('web.WEB_TIT')}
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+      <link rel="stylesheet" href="__PC__/css/mian.css"> 
+      
+<style type="text/css">
+.newscss {
+	border: 1px solid #fff;
+	background: -webkit-linear-gradient(45deg, #dad5d5 0%, #eeeeee 100%);
+}
+</style>
+      {include file="index/header"}
+		<div class="bg">
+		</div>
+		<article style="margin-bottom:15px;">
+			<div>
+					<li class="layui-clear">
+						<div class="fenlei">
+							<div class="title searchweb">
+								<h3>
+									全部
+								</h3>
+								<form action="/newsso.html">
+									<input type="text" name="ks" required="required" value="<?php echo input('ks');?>"
+									placeholder="请输入搜索的关键字" />
+									<input type="submit" class="layui-icon" id="search_btn" value="&#xe615;">
+								</form>
+							</div>
+            <ul class="layui-clear" id="type_list">
+              <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/news.html{else/}__INDEX__/news.html{/if}" class="wlzy newscss">全部</a></li>    
+                {volist name="newscate" id="vo"}     
+              <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/article/{$vo.id}.html{else/}__INDEX__/article/{$vo.id}.html{/if}" class="wlzy newscss{$vo.id}">{$vo.name}</a></li>     
+              {/volist}
+              
+          </ul>
+                          
+						</div>
+					</li>
+              
+				<ul class="lists">
+					{volist name="news" id="vo "}
+					<li class="layui-clear">
+						<a href="{if condition=" config( 'web.WEB_URL') eq 1
+						"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" class="weblogo" target="_blank">
+							<img src="{$vo.content|pic}" width="100" height="75" />
+						</a>
+						<p class="introduce">
+							<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" target="_blank" {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"{/if}>
+								{$vo.title}
+							</a>
+						</p>
+						<span class="click" {if date( 'Ymd') eq date( 'Ymd',$vo.time) }style="color:red"
+						{/if}>
+							{$vo.time|date='m-d',###}
+						</span>
+						<a href="{if condition=" config( 'web.WEB_URL') eq 1
+						"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" class="go" target="_top">
+							详情...
+						</a>
+					</li>
+					{/volist}
+				</ul>
+			</div>
+			<hr style="background-color: rgba(0,0,0,0);">
+			<div class="layui-clear">
+				<div class="pages">
+					{$news->render()}
+				</div>
+			</div>
+			<hr style="background-color: rgba(0,0,0,0);">
+		</article>
+		{include file="index/footer"}
+		<script>
+		</script>
+		</body>
+
+</html>

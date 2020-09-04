@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>广告合作 - {:config('web.WEB_TIT')}</title>
+  <meta name="keywords" content="{:config('web.WEB_KEY')}">
+  <meta name="description" content="{:config('web.WEB_DES')}">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+  <link rel="stylesheet" href="__ADMIN__/layui/css/layui.css">
+ 
+  <script src="__ADMIN__/layui/layui.js" type="text/javascript"></script>
+ 
+<link rel="stylesheet" href="__ADMIN__/wangEditor/css/wangEditor.min.css">
+
+</head>
+ 
+<style type="text/css">
+.tpt_sels a{padding-right:15px;position:relative}
+.tpt_sels a{padding:0 20px 0 8px;color:#3B6268;background:#FFFFBA;border:1px #F8E06E solid;margin-right:5px;margin-bottom:5px;font-size:14px;height:26px;line-height:26px;display:block;float:left}
+.tpt_pres a.selected{padding:0 8px;color:#3B6268;background:#FFFFBA;border:1px #F8E06E solid;margin-right:5px;margin-bottom:5px;font-size:14px;height:26px;line-height:26px;display:block;float:left}
+.tpt_pres a{padding:0 8px;color:#fff;background:#5AC7A9;border:1px #5AC7A9 solid;margin-right:5px;margin-bottom:5px;font-size:14px;height:26px;line-height:26px;display:block;float:left}
+.tpt_sels a em{width: 12px;height: 12px;font-style: normal;display: block;position: absolute;top: 7px;right: 4px;z-index: 2;background: url(__ADMIN__/img/sx.png) no-repeat 0 0;}
+.cl{zoom:1}
+.cl:after{content:'\20';display:block;height:0;clear:both;visibility:hidden}
+.wangEditor-menu-container .menu-item a {padding: 12px 0;}
+.wangEditor-menu-container .menu-item {height: 37px;width: 37px;}
+.wangEditor-menu-container .menu-group {padding: 0;}
+.wangEditor-container {border: 1px solid #e6e6e6;}
+.her {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.her li {
+    float: left;
+}
+
+.her li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.her li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+  .thisContent p {
+    line-height: 30px;
+    font-size: 15px;
+    margin-top: 15px;
+    color: #616161;
+}
+  .title {
+	position: relative;
+	height: 45px;
+	line-height: 35px;
+	text-indent: 21px;
+	font-size: 17px;
+	border-bottom: 1px solid #F6F6F6;
+}
+
+.title:after {
+	content: " ";
+	position: absolute;
+	height: 17px;
+	width: 0;
+	border: 1.5px solid #5298ff;
+	left: 0;
+	border-radius: 9px;
+	top: 8px;
+}
+.title h3 {
+	line-height: 40px;
+	color: #333;
+	font-size: 17px;
+	position: relative;
+	padding-left: 20px;
+}
+
+.title h3:before {
+	content: " ";
+	position: absolute;
+	left: 0;
+	top: 11px;
+	height: 18px;
+	width: 3px;
+	background: #20c4ab;
+}
+
+.title a {
+	position: absolute;
+	right: 10px;
+	top: 0;
+	height: 40px;
+	line-height: 40px;
+	font-size: 16px;
+	font-weight:bold;
+	color: #fe0000;
+}
+
+</style>
+  <ul class="her">
+  <li><a href="/add.html">提交</a></li>
+    
+                  {volist name="dan" id="vo" length="28"}
+ 
+                    <li><a href="/dans/{$vo.id}.html">{$vo.title}</a></li>
+		 
+                  {/volist}
+ 
+    
+  <li style="float:right"><a class="active" href="/">首页</a></li>
+</ul>
+
+<div style="padding: 20px;padding-top: 5px;background-color: #fff;">
+						<div class="layui-form layui-form-pane">
+	 
+							<div class="layui-tab layui-tab-brief" lay-filter="user">
+
+                              <div class="thisContent">
+						<div class="title">
+							<h3>{$t.title}</h3>
+						</div>
+						 
+                                <div class="wangEditor-container"> 
+                                <div class=" wangEditor-txt">
+                        
+						<p>
+							{$t.content|htmlspecialchars_decode}
+						</p>
+						</div>
+					 	</div>
+			
+							</div>
+						</div>
+					</div>
+</body>
+</html>

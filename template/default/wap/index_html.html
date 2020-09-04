@@ -1,0 +1,135 @@
+
+ <html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>{$t.title} - {:config('web.WEB_TIT')} - 手机版</title>
+  		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        {include file="index/header"}
+    </head>
+    <body huaban_collector_injected="true">
+<header class="hui-header">
+        <a>
+            <div id="hui-back" onclick="javascript:history.back(-1)"></div>
+        </a>
+        <h1>{$t.title}</h1>
+        <a href="/"><div id="hui-header-menu"></div></a>
+    </header>
+
+   
+   
+   
+<div class="page-group">
+    
+        <div class="page page-current">
+        	<header class="header">
+        		<a class="backs left iconfont icon-fanhui"></a>
+        		<h3>网站详情</h3>
+        		<a class="right iconfont icon-tuwenliebiao open-panel"></a>
+            </header>
+            <div class="content native-scroll">
+                <div class="web clearfix">
+                	<div class="left">
+                		<img src="{$t.pic}">
+                	</div>
+                	<div class="right">
+                		<h3 class="titleh3"><em>{$t.title} </em> </h3>
+                	</div>
+                	<div class="btn">
+                		<a href="http://{$t.lianjie}/{:config('web.WEB_HZ')}" class="topdj" data-id="{$t.id}" target="_blank">直接访问</a>
+                		<a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/view/{$t.cid}.html{else/}__INDEX__/view/{$t.cid}.html{/if}">类似网站</a>
+                	</div>
+                  <script>
+		
+                    layui.use(['form', 'upload'],function() {
+		
+                      var form = layui.form,
+		
+                          jq = layui.jquery;
+		
+                      jq(".topdj").bind("topdj").click(function() {
+			
+                        var url = "{:url("index/index/topdj")}";
+			
+                        var id = jq(this).data('id');
+			
+                        jq.post(url, {
+				
+                          id: id
+				
+                        },function(data) {});
+		
+                      });
+		
+                    })
+	
+                  </script>
+                </div>
+                <div class="intro">
+                	<div class="titles" style="margin-top:0.3rem;">
+						<h3>基本信息</h3>
+					</div>
+					<ul class="web-info clearfix">
+
+						<li>
+							<h3>域名：</h3>
+							<span>{$t.lianjie}</span>
+						</li>
+						<li>
+							<h3>收录时间：</h3>
+							<span>{$t.time|date="Y-m-d h:i:s",###}</span>
+						</li>
+
+						<li>
+							<h3>站长QQ：</h3>
+							<span>
+									{$t.qq}</span>
+						</li>
+						<li>
+							<h3>所属分类：</h3>
+							<span>{$t.name}</span>
+						</li>
+						<li>
+							<h3>点击：</h3>
+							<span>{$t.view}人次</span>
+						</li>
+						<li>
+							<h3>百度权重：</h3>
+							<span><a href="https://www.aizhan.com/cha/{$t.lianjie}" target="_blank" class="br"><img src="https://baidurank.aizhan.com/api/br?domain={$t.lianjie}&amp;style=images"></a></span>
+						</li>
+	
+					</ul>
+					<div class="titles">
+						<h3>网站介绍</h3>
+					</div>
+                	<p>
+						 {$content} 	</p>
+                </div>
+                <div class="other">
+                	<div class="titles">
+						<h3>猜你喜欢</h3>
+					</div>
+					<ul class="web_list">
+						{volist name="artchoice" id="vo"}						
+                      <li>
+							<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" class="clearfix">
+								<div class="img">
+									<img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}"height="50">
+								</div>
+								<p>	 {$vo.title}</p>
+							</a>
+						</li>
+                      {/volist}
+ 
+							                </ul>
+                </div>
+ 
+</div>
+</div>
+ 
+  
+  </div>
+</body>
+</html>

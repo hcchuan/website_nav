@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>积分充值 - {:config('web.WEB_TIT')}</title>
+		</title>
+		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+		{include file="index/header"}
+		<style type="text/css">
+			.wang { border: 1px solid #fff; background: #f1f1f1; } .wang{border:1px
+			solid #ececec;background:#FFF;display:block;width:83px;text-align:center;color:#333;font-size:14px;border-radius:19px;max-width:100%;overflow:hidden;margin:0px
+			auto;transition:0.2s all} .content { background: #fafafa; margin-bottom:
+			10px; } .content > .right { background: #eeeeee; border: 20px solid #fafafa;
+			} .content > .right { padding-top: 0px; } 
+          .content > .left li .hover { background: #6ba7f0; border-left: 6px solid #f79306!important;}
+          .tuichu { display: inline-block; height: 20px; line-height: 20px; padding:
+			0 18px; background-color: #f5043e; color: #fff; white-space: nowrap; text-align:
+			center; font-size: 14px; border: none; border-radius: 2px; cursor: pointer;
+			opacity: .9; filter: alpha(opacity=90); }
+		</style>
+		<link rel="stylesheet" href="__PC__/css/global.css">
+		<article>
+			<div class="content layui-clear">
+				<ul class="left">
+					<div align="center">
+						<img id="headedit" src="{$member.userhead}" height="80" width="80">
+						<li style="margin-top:10px;color: #0b5ab9;font-weight: bold;font-size: 18px;">
+							{$Think.session.username}
+						</li>
+						<li>
+							<button class="tuichu">
+								退出
+							</button>
+						</li>
+						<script>
+							layui.use('form', function() {
+
+    var form = layui.form()
+
+    , jq = layui.jquery;
+
+    jq('.tuichu').click(function() {
+
+        var id = jq(this).data('id');
+
+        var url = "{:url('login/logout')}";
+
+        layer.confirm('确定要退出吗？', function(index) {
+
+            loading = layer.load(20, {
+
+                shade: [0.2, '#000']
+
+            });
+
+            jq.post(url, {
+                id: id
+            }, function(data) {
+
+                location.reload();
+
+                layer.msg(data.msg, {
+                    icon: 1,
+                    time: 1000
+                }, function() {
+
+                });
+
+                layer.close(loading);
+
+            });
+
+        });
+
+    });
+
+});
+						</script>
+						<li>
+							{:config('point.GJJF-MING')}:{$member.point}
+						</li>
+					</div>
+					<li>
+						<a href="/user/set.html">
+							<img src="__PC__/img/1215615.gif">
+							基本设置
+						</a>
+					</li>
+					<li>
+						<a href="/user/comment.html">
+							<img src="__PC__/img/1215606.gif">
+							我的操作
+						</a>
+					</li>
+
+					<li>
+						<a href="/kuai.html">
+							<img src="__PC__/img/1215610.gif">
+							快审提交
+						</a>
+					</li>
+					<li>
+						<a href="/user/cz.html"class="hover">
+							<img src="__PC__/img/1215650.gif">
+							积分充值
+						</a>
+					</li>
+				</ul>
+	<div class="right">
+
+  <div style="padding: 10px;">
+ 
+    <div class="layui-tab layui-tab-brief">
+      <ul class="layui-tab-title">
+		<li class="layui-this">充值</li>
+      </ul>
+      <div class="layui-tab-content" style="padding: 20px 0;">
+ 
+<table width="100%" >
+  <tr>
+    <td valign="top"><div class="main layui-clear">
+	<div class="layui-tab layui-tab-brief">
+ 
+  <div class="fly-panel" pad20>   
+
+    <div class="layui-form layui-form-pane">
+      <form method="post"  >
+<div class="layui-form-mid layui-word-aux">充值过程中请勿关闭页面</div>
+		<div class="layui-form-item">
+     
+          <label for="L_title" class="layui-form-label">充值金额</label>
+          
+          <div class="layui-input-inline">
+            <input type="number" name="jiage" id="czjiage"  required lay-verify="required"  autocomplete="off" class="layui-input">
+          </div>
+      
+           <div class="layui-form-mid layui-word-aux">最少充值{:config('point.ADD_CZ')}元</div>
+        
+        </div>
+     <div class="layui-form-item">
+          <label for="L_title" class="layui-form-label">积分</label>
+          <div class="layui-input-inline">
+            <input type="number" name="score" id="czscore" disabled class="layui-input">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <button class="layui-btn"  lay-submit="" lay-filter="forum_add">确认支付</button>
+          <button onclick="history.go(-1);" class="layui-btn layui-btn-primary ">返回</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div></td>
+  </tr>
+</table>
+ 
+ 
+<script>
+
+
+layui.use('form', function(){
+  var form = layui.form()
+  ,jq = layui.jquery;
+  
+  var scorenum={:config('point.ADD_BL')};
+  jq('#czjiage').on('focusout',function(){
+	  
+	var jiage=jq(this).val();
+	var	score=jiage*scorenum;
+		  jq('#czscore').val(score);
+	
+  });
+ 
+ var url="{:url("index/alipay/paysubmit")}";
+
+  form.on('submit(forum_add)', function(data){
+  
+ 
+    var param = data.field;
+
+    jq.post(url,param,function(data){
+    	
+      if(data.code == 1){
+    	  layer.msg(data.msg, {icon: 1, anim: 6, time: 1000},function(){
+    		  
+    		  jq('.main').append(data.url);
+    		  
+    	  });
+    	
+    	 
+    
+    	  
+      }else{
+     
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });  
+    return false;
+  });
+
+})
+</script>
+ 
+ 
+      </div>
+    </div>
+  </div>
+ 
+
+  </div>
+</div>
+
+</article>
+ 
+{include file="index/footer"}
+<script>
+</script>
+</body>
+</html>
+
+ 

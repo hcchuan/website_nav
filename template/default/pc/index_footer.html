@@ -1,0 +1,128 @@
+ 
+<footer>
+    <div>
+        <ul class="layui-clear">
+            <li><a href="{:config('web.WEB_AUT')}"target="_blank">QQ群</a></li>
+            <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/dans/2.html{else/}__INDEX__/dans/2.html{/if}">广告合作</a></li>
+            <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/add.html{else/}__INDEX__/add.html{/if}">申请收录</a></li>
+            <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/dans/1.html{else/}__INDEX__/dans/1.html{/if}">关于我们</a></li>
+            <li><a href="http://wpa.qq.com/msgrd?v=3&uin={:config('web.WEB_QQ')}&site=qq&menu=yes" target="_blank">QQ咨询</a></li>
+        </ul>
+      <p class="copart">
+<!-- 下面版权未授权用户不能去掉否则会跳转到官网强行修改后果自负 需要去版权请联系QQ50361804授权-->
+            <a href="{:config('web.WEB_COM')}">Copyright© 2019</a>  <a target="_blank" href="http://www.guojiz.com/">Powered by Guojiz V2.2</a>  {:config('web.WEB_ICP')}，{:config('web.WEB_TJ')} <a>本站已经运行<a id="days">0</a>天</a>
+<!-- 请修改下面的统计代码改为你自己的 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?c73b08435655072b8172ee727cb915c3";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+       
+      </p>
+  </div>
+</footer>
+ 
+
+<!--下面自动推送代码-->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<div id="layui-sides" style="width: 50px!important;">
+	<ul class="side-bars">
+		{if condition="$Think.session.username neq ''"}
+		<a href="/" onclick="layer.msg('首页...', {icon:10, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215630.gif" height="30" width="30" />
+			</li>
+		</a>
+		<a href="/user/set.html" onclick="layer.msg('设置...', {icon:10, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215615.gif" height="30" width="30" />
+			</li>
+		</a>
+		<a href="/user/comment.html" onclick="layer.msg('操作...', {icon:10, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215606.gif" height="30" width="30" />
+			</li>
+		</a>
+		<a href="/kuai.html" onclick="layer.msg('快审...', {icon:10, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215610.gif" height="30" width="30" />
+			</li>
+		</a>
+		<a href="/user/cz.html" onclick="layer.msg('充值...', {icon:10, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215650.gif" height="30" width="30" />
+			</li>
+		</a>
+		{else /}
+		<a href="/" onclick="layer.msg('首页...', {icon:10, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215630.gif" height="30" width="30" />
+			</li>
+		</a>
+		<a href="/login/index.html" onclick="layer.msg('正在跳转登录页面', {icon:16, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215631.gif" height="30" width="30" />
+			</li>
+		</a>
+		<a href="/login/reg.html" onclick="layer.msg('正在跳转注册页面', {icon:16, shade: 0.1, time:0})"
+		rel="nofollow">
+			<li class="match">
+				<img src="__PC__/img/1215628.gif" height="30" width="30" />
+			</li>
+		</a>
+		{/if}
+	</ul>
+</div>
+	<a href="javascript:;" id="dingbu" style="display: none;">
+		<img src="__PC__/img/1215611.gif" height="30" width="30" />
+	</a>
+<script>
+	window.onscroll = function() {
+    scrollFunction()
+};
+
+function scrollFunction() {
+    console.log(121);
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        document.getElementById("dingbu").style.display = "block";
+    } else {
+        document.getElementById("dingbu").style.display = "none";
+    }
+}
+$("#dingbu").click(function() {
+    $("html,body").animate({
+        scrollTop: 0
+    }, 500);
+
+});
+var s1 = '{:config('web.PZ-YX')}';
+s1 = new Date(s1.replace(/-/g, "/"));
+s2 = new Date();
+var days = s2.getTime() - s1.getTime();
+var number_of_days = parseInt(days / (1000 * 60 * 60 * 24));
+document.getElementById('days').innerHTML = number_of_days;
+</script>

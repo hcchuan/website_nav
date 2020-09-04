@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>  
+  <title>{$name}分类 - {:config('web.WEB_TIT')}</title>
+  <meta name="keywords" content="{$keywords}">
+  <meta name="description" content="{$description}">
+{include file="index/header"}
+  <link rel="stylesheet" href="__PC__/css/view.css"> 
+<style type="text/css">
+.css{$id} {
+	border: 1px solid #fff;
+	background: -webkit-linear-gradient(45deg, #b1acac 0%, #eeeeee 100%);
+}
+</style>
+<article>
+    <div>
+        <div class="fenlei you">
+            <div class="title searchweb">
+                <h3>{$name}</h3>
+                 <form action="/search.html">
+                    <input type="text" name="ks" required="required" value="" placeholder="请输入搜索的关键字">
+                    <input type="submit" class="layui-icon" id="search_btn" value="">
+                </form>
+            </div>
+            <ul class="layui-clear" id="type_list">
+              <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/list.html{else/}__INDEX__/list.html{/if}" class="wlzy css">最近更新</a></li>    
+                {volist name="tpto" id="vo"}     
+              <li data-id="1"><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/view/{$vo.id}.html{else/}__INDEX__/view/{$vo.id}.html{/if}" class="wlzy css{$vo.id}">{$vo.name}</a></li>     
+              {/volist}
+              
+          </ul>
+        </div>
+      <div class="lists you" style="margin-bottom:15px;">
+            <ul class="layui-clear" id="listli">
+                 {volist name="tptc" id="vo"}                             
+              <li>
+                    <a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/daohang/{$vo.id}.html{else/}__INDEX__/daohang/{$vo.id}.html{/if}" target="_blank">
+                        <div class="img">
+                            <img src="{if condition="$vo['pic'] neq ''"}{$vo.pic}{else/}/public/img/cover.png{/if}" height="100">
+                        </div>
+                      <div align="center">
+                        <p class="introduce">[{$vo.title}]</p>
+                      </div>
+                    </a>
+                </li>
+              {/volist}
+              </ul>
+        </div>
+    </div>
+
+<hr style="background-color: rgba(0,0,0,0);">
+<div class="pages">
+{$tptc->render()}
+ </div>  
+<hr style="background-color: rgba(0,0,0,0);">
+</article>
+{include file="index/footer"}
+<script>
+</script>
+</body>
+</html>

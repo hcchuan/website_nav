@@ -1,0 +1,68 @@
+ 
+<html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>{$name} - {:config('web.WEB_TIT')} - 手机版</title>
+  		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        {include file="index/header"}
+    </head>
+    <body huaban_collector_injected="true">
+        <section class="aui-flexView">
+            <section class="aui-scrollView">
+<div id="mobile_nav">
+    <div class="nav_box"><span class="navicon"></span></div>
+    <ul class="nav_ul">
+      <li><a href="/news.html" >全部</a></li>
+ {volist name="newscate" id="vo"}   
+        <li><a href="{if condition="config('web.WEB_URL') eq 1"}__ROOT__/article/{$vo.id}.html{else/}__INDEX__/article/{$vo.id}.html{/if}">{$vo.name}</a></li>
+{/volist}
+    </ul>
+</div>
+<script type="text/javascript">
+window.onload = function (){
+    var nav_box = document.getElementsByClassName("nav_box")[0];
+    var ul = document.getElementsByClassName("nav_ul")[0];
+    nav_box.onclick = function (){
+        var style = ul.style;
+        style.display = style.display == "block" ? "none" : "block";
+        nav_box.className = style.display == "block" ? "open" : ""
+    }
+}
+</script>       
+               
+ 
+        <div style="margin-top:40px;" class="news">
+                <a href="javascript:;" class="aui-well-item">
+                    <div class="aui-well-item-hd">{$name}</div>
+                </a>
+          <ul>
+  {volist name="news" id="vo "}
+            
+	<li>
+		<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" target="_blank"
+		class="clearfix">
+			<div class="img">
+				<img src="{$vo.content|Pic}">
+			</div>
+			<div class="info">
+				<h3>
+					{$vo.title}
+				</h3>
+			</div>
+		</a>
+	</li>
+ 
+{/volist}
+
+          </ul>
+        </div>   
+				<div class="pages">
+					{$news->render()}
+				</div>
+ {include file="index/footer"}
+              
+ 

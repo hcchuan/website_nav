@@ -1,0 +1,189 @@
+ 
+<html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>{:config('web.WEB_TIT')} - 手机版</title>
+  		<meta name="keywords" content="{:config('web.WEB_KEY')}">
+		<meta name="description" content="{:config('web.WEB_DES')}">
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta content="telephone=no" name="format-detection">
+        {include file="index/header"}
+    </head>
+    <body huaban_collector_injected="true">
+        <section class="aui-flexView">
+            <section class="aui-scrollView">
+                <div class="aui-palace clearfix">
+                    <a id="alert" href="javascript:;" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="__WAP__/img/zxgj.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>工具</h2>
+                        </div>
+                    </a>
+                      <script>
+                        document.getElementById('alert').onclick = function () {
+                          alert({
+                            title: '在线工具',
+                            content: '<div style="margin-top:10px;" class="aui-grids-box">{volist name="guojizgj " id="vo " length="12"}<a data-id="{$vo.id}" style="margin-top:10px;"href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank" class="aui-grids-item topdj"><div class="aui-grids-item-hd"><img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}" alt=""></div><div class="aui-grids-item-bd">{$vo.title} </div> </a>{/volist} </div>',
+                            doneText: '取消'
+                          }).then(callback)
+                        }
+                  </script>
+
+                    <a id="alertzx"  href="javascript:;" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="__WAP__/img/zx.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>最新</h2>
+                        </div>
+                    </a>
+                      <script>
+                        document.getElementById('alertzx').onclick = function () {
+                          alert({
+                            title: '最新收录',
+                            content: '<div style="margin-top:10px;" class="aui-grids-box">{volist name="guojiznews " id="vo " length="12"}<a data-id="{$vo.id}" style="margin-top:10px;"href="http://{$vo.lianjie}/{:config('web.WEB_HZ')}" target="_blank" class="aui-grids-item topdj"><div class="aui-grids-item-hd"><img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}" alt=""></div><div class="aui-grids-item-bd">{$vo.title} </div> </a>{/volist} </div>',
+                            doneText: '取消'
+                          }).then(callback)
+                        }
+                  </script>
+                    <a href="/guanyu.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="__WAP__/img/gywm.png" alt="">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>关于</h2>
+                        </div>
+                    </a>
+                    <a href="/add.html" class="aui-palace-grid">
+                        <div class="aui-palace-grid-icon">
+                            <img src="__WAP__/img/sl.png" alt="提交网页">
+                        </div>
+                        <div class="aui-palace-grid-text">
+                            <h2>提交</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="aui-modular aui-modular-two" style="padding-top:15px;">
+                    <a href="javascript:;" class="aui-modular-item">
+            <form class="indexSearch"  action="https://www.baidu.com/s" target="_blank">
+                <i class="iconfont icon-sousuo"></i>
+                <input type="text" required="required" name="wd" value=""placeholder="百度搜索">
+                <ul class="selectKeyword"></ul>
+            </form>
+           
+                    </a>
+                </div>
+                <div class="divHeight"></div>
+                <div class="aui-m-slider">
+    {volist name="guojizgg" id="vo"}{if condition="$vo['fl'] eq 1"}{$vo.title|htmlspecialchars_decode}{/if}{/volist}
+                </div>
+                <a href="javascript:;" class="aui-well-item">
+                    <div class="aui-well-item-hd">精选</div>
+                </a>
+                <div class="aui-fun-clear">
+                    <div class="aui-palace clearfix">
+                      
+                      {volist name="guojizjing" id="vo" length="12" }  
+                        <a data-id="{$vo.id}" href="http://{$vo.lianjie}/#guojiz.com" target="_blank" class="aui-palace-grid topdj">
+                            <div class="aui-palace-grid-icon">
+                                <img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>{$vo.title|msubstr=0,4,'utf-8',true}</h2>
+                            </div>
+                        </a>
+
+                      {/volist}  
+
+                    </div>
+                </div>
+                <div class="divHeight"></div>
+                <a href="javascript:;" class="aui-well-item">
+                    <div class="aui-well-item-hd">推荐</div>
+                </a>
+ 
+                <div class="aui-fun-clear">
+                    <div class="aui-palace clearfix">
+                      
+                      {volist name="guojiztui" id="vo" length="12"}  
+                         <a data-id="{$vo.id}" href="http://{$vo.lianjie}/#guojiz.com" target="_blank" class="aui-palace-grid topdj">
+                            <div class="aui-palace-grid-icon">
+                                <img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>{$vo.title|msubstr=0,4,'utf-8',true}</h2>
+                            </div>
+                        </a>
+
+                      {/volist}  
+
+                    </div>
+                </div>
+                <div class="divHeight"></div>
+                <a href="javascript:;" class="aui-well-item">
+                    <div class="aui-well-item-hd">热门</div>
+                </a>
+ 
+                <div class="aui-fun-clear">
+                    <div class="aui-palace clearfix">
+                      
+                      {volist name="guojiztop" id="vo" length="12"}   
+                         <a data-id="{$vo.id}" href="http://{$vo.lianjie}/#guojiz.com" target="_blank" class="aui-palace-grid topdj">
+                            <div class="aui-palace-grid-icon">
+                                <img src="{if condition="$vo['ico'] neq ''"}{$vo.ico}{else/}http://{$vo.lianjie}/favicon.ico{/if}" alt="">
+                            </div>
+                            <div class="aui-palace-grid-text">
+                                <h2>{$vo.title|msubstr=0,4,'utf-8',true}</h2>
+                            </div>
+                        </a>
+
+                      {/volist}  
+
+                    </div>
+                </div>
+                <div class="divHeight"></div>
+              
+                <a href="javascript:;" class="aui-well-item">
+                    <div class="aui-well-item-hd">文章</div>
+                    <div class="aui-well-item-fr"></div>
+                </a>
+        <div class="news">
+          <ul>
+  {volist name="guojizx" id="vo" length="12"}
+	<li>
+		<a href="{if condition=" config( 'web.WEB_URL') eq 1"}__ROOT__/xq/{$vo.id}.html{else/}__INDEX__/xq/{$vo.id}.html{/if}" target="_blank"
+		class="clearfix">
+			<div class="img">
+				<img src="{$vo.content|Pic}">
+			</div>
+			<div class="info">
+				<h3>
+					{$vo.title}
+				</h3>
+			</div>
+		</a>
+	</li>
+ 
+{/volist}
+
+          </ul>
+        </div>
+      <script>  
+        layui.use(['form', 'upload'],function() {     
+          var form = layui.form, 
+              jq = layui.jquery;     
+          jq(".topdj").bind("topdj").click(function() {       
+            var url = "{:url("index/index/topdj")}";   
+            var id = jq(this).data('id');
+            jq.post(url, {             
+              id: id      
+            },function(data) {});          
+          });                
+        })    
+      </script>
+ {include file="index/footer"}
+              
+ 

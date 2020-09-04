@@ -1,0 +1,128 @@
+{include file="index/header"}
+<body>
+<div class="fly-panel fly-panel-user">
+<div class="tpt—admin">
+
+<fieldset class="layui-elem-field layui-field-title">
+<legend>支付配置</legend>
+</fieldset>
+
+<form class="layui-form">
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">ID</label>
+    <div class="layui-input-block">
+	  <input type="text" name="ADD_ID" value="{:config('point.ADD_ID')}" placeholder="请输入内容" autocomplete="off" class="layui-input"style="width: 200px;float: left;">
+      <span style="float: left;line-height: 38px;margin: 0 20px;">支付宝用户请填 合作身份者ID，签约账号，以2088开头（<a href="https://b.alipay.com/signing/productSet.htm" target="_blank">申请</a>)</span>
+    </div>
+    
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">KEY</label>
+    <div class="layui-input-block">
+	  <input type="text" name="ADD_KEY" value="{:config('point.ADD_KEY')}" placeholder="请输入内容" autocomplete="off" class="layui-input"style="width: 200px;float: left;">
+      <span style="float: left;line-height: 38px;margin: 0 20px;">由数字和字母组成的32位字符串</span>
+    </div>
+    
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">比例</label>
+    <div class="layui-input-block">
+	  <input type="text" name="ADD_BL" value="{:config('point.ADD_BL')}" placeholder="请输入内容" autocomplete="off" class="layui-input"style="width: 200px;float: left;">
+      <span style="float: left;line-height: 38px;margin: 0 20px;">例如填写10表示1元人民币兑换10积分</span>
+    </div>
+    
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">最少充值</label>
+    <div class="layui-input-block">
+	  <input type="text" name="ADD_CZ" value="{:config('point.ADD_CZ')}" placeholder="请输入内容" autocomplete="off" class="layui-input"style="width: 200px;float: left;">
+      <span style="float: left;line-height: 38px;margin: 0 20px;">例如填写1表示最少充值1元</span>
+    </div>
+    
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">商品名称</label>
+    <div class="layui-input-block">
+	  <input type="text" name="ADD_MC" value="{:config('point.ADD_MC')}" placeholder="请输入内容" autocomplete="off" class="layui-input"style="width: 200px;float: left;">
+      <span style="float: left;line-height: 38px;margin: 0 20px;">不能为空</span>
+    </div>
+    
+  </div>
+<fieldset class="layui-elem-field layui-field-title">
+<legend>积分管理</legend>
+</fieldset>
+  <div class="layui-form-item">
+    <label class="layui-form-label">积分命名</label>
+    <div class="layui-input-block">
+	  <input type="text" name="GJJF-MING" value="{:config('point.GJJF-MING')}" placeholder="请输入内容" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+
+
+
+  <div class="layui-form-item">
+    <label class="layui-form-label">注册</label>
+    <div class="layui-input-block">
+	  <input type="text" name="GJJF-ZC" value="{:config('point.GJJF-ZC')}" placeholder="请输入内容" autocomplete="off" class="layui-input" style="width: 150px;float: left;">
+	  <span style="float: left;line-height: 38px;margin: 0 20px;">{:config('point.GJJF-MING')}</span>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+   <label class="layui-form-label">登录</label>
+    <div class="layui-input-block">
+	  <input type="text" name="GJJF-DL" value="{:config('point.GJJF-DL')}" placeholder="请输入内容" autocomplete="off" class="layui-input" style="width: 150px;float: left;">
+	  <span style="float: left;line-height: 38px;margin: 0 20px;">{:config('point.GJJF-MING')}</span>
+    </div>
+  </div>
+
+  <div class="layui-form-item">
+   <label class="layui-form-label">快审</label>
+    <div class="layui-input-block">
+	  <input type="text" name="GJJF-KUAI" value="{:config('point.GJJF-KUAI')}" placeholder="请输入内容" autocomplete="off" class="layui-input" style="width: 150px;float: left;">
+	  <span style="float: left;line-height: 38px;margin: 0 20px;">{:config('point.GJJF-MING')}</span>
+
+    </div>
+  </div>
+
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+	  <button class="layui-btn" lay-submit="" lay-filter="point_add">立即提交</button>
+    </div>
+  </div>
+
+
+</form>
+</div>
+</div>
+<script>
+layui.use('form',function(){
+  var form = layui.form()
+  ,jq = layui.jquery;
+  
+  form.on('submit(point_add)', function(data){
+    loading = layer.load(2, {
+      shade: [0.2,'#000']
+    });
+    var param = data.field;
+    jq.post('{:url("point/add")}',param,function(data){
+      if(data.code == 200){
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 1, time: 1000}, function(){
+          location.href = '{:url("point/index")}';
+        });
+      }else{
+        layer.close(loading);
+        layer.msg(data.msg, {icon: 2, anim: 6, time: 1000});
+      }
+    });
+    return false;
+  });
+
+})
+</script>
+{include file="index_footer"}
+</body>
+</html>
